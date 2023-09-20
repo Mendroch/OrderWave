@@ -1,6 +1,6 @@
 import mongoose, { Schema, Document } from "mongoose";
 
-interface IOrder extends Document {
+export interface IOrder extends Document {
   number: number;
   dishesList: Array<{
     name: string;
