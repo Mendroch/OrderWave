@@ -1,6 +1,5 @@
 import express, { Request, Response } from "express";
 import { OrderModel } from "../models/order";
-import { IOrder } from "../models/order";
 const router = express.Router();
 
 // All orders
@@ -16,12 +15,9 @@ router.get("/", async (_, res: Response) => {
 
 // Create new order
 router.post("/", async (req: Request, res: Response) => {
-  const order = new OrderModel({
-    number: req.body.number,
-    dishesList: req.body.dishesList,
-  });
+  const { number, dishesList } = req.body;
   try {
-    const newOrder = await order.save();
+    const newOrder = await OrderModel.create({ number, dishesList });
     res.status(201).json(newOrder);
   } catch (error) {
     console.error("Error creating order", error);
@@ -31,13 +27,9 @@ router.post("/", async (req: Request, res: Response) => {
 
 // Delete order
 router.delete("/:id", async (req: Request, res: Response) => {
-  let order: IOrder | null;
   try {
-    order = await OrderModel.findById(req.params.id);
-    if (!order) {
-      return res.status(404).json({ error: "Order not found" });
-    }
-    await order.deleteOne();
+    const deletedOrder = await OrderModel.findByIdAndDelete(req.params.id);
+    if (!deletedOrder) res.status(404).json({ error: "Order not found" });
     res.json({ message: "Order deleted successfully" });
   } catch (error) {
     console.error("Error deleting order", error);

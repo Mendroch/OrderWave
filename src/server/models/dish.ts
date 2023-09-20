@@ -10,6 +10,7 @@ interface IDish extends Document {
   extraIngredients?: string[];
   removableIngredients?: string[];
   picture?: Buffer;
+  pictureType: string;
   price: number;
 }
 
@@ -23,6 +24,7 @@ const dishSchema = new Schema<IDish>({
   extraIngredients: [String],
   removableIngredients: [String],
   picture: Buffer,
+  pictureType: String,
   price: { type: Number, required: true },
 });
 
