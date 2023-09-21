@@ -5,7 +5,6 @@ interface IRestaurant extends Document {
   background: Buffer;
   openDays: Boolean[];
   openingHours: Array<{
-    day: string;
     start: string;
     end: string;
   }>;
@@ -18,7 +17,6 @@ const restaurantSchema = new Schema<IRestaurant>({
   openDays: { type: [Boolean], required: true },
   openingHours: [
     {
-      day: { type: String, required: true },
       start: { type: String, required: true },
       end: { type: String, required: true },
     },
