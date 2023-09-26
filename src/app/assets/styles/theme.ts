@@ -1,0 +1,27 @@
+export const theme = {
+  colors: {
+    white: "#FEFEFE",
+    lightGray: "#F2F2F2",
+    semiLightGray: "#DEDEDE",
+    gray: "#B7B7B7",
+    darkGray: "#686868",
+    veryDarkGray: "#565656",
+    black: "#111111",
+    lightPurple: "#F2EDFF",
+    purple: "#7545FB",
+    darkPurple: "#330F3F",
+    lightYellow: "#FBF6DD",
+    red: "#C93015",
+    patternsBlue: "#E1E8EB",
+    ateneoBlue: "#075069",
+    shadow: "rgba(0,0,0,0.25)",
+  },
+  fontSize: {
+    xxl: "32px",
+    xl: "24px",
+    l: "20px",
+    m: "16px",
+    s: "14px",
+    xs: "12px",
+  },
+};
