@@ -11,7 +11,7 @@ export const GlobalStyles = createGlobalStyle`
   
   body {
     font-family: 'Inter', sans-serif;
-    overflow: hidden;
+    background-color: ${({ theme }) => theme.colors.white};
   }
   
   a, button {
@@ -21,5 +21,9 @@ export const GlobalStyles = createGlobalStyle`
   a, button {
     font-family: 'Inter', sans-serif;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  }
+
+  p {
+    margin: 0;
   }
 `;

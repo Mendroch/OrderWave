@@ -24,4 +24,8 @@ export const theme = {
     s: "14px",
     xs: "12px",
   },
+  width: {
+    container: "560px",
+    dashboardContainer: "1000px",
+  },
 };
