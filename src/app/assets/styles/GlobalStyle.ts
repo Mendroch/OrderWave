@@ -12,6 +12,7 @@ export const GlobalStyles = createGlobalStyle`
   body {
     font-family: 'Inter', sans-serif;
     background-color: ${({ theme }) => theme.colors.white};
+    overflow: hidden;
   }
   
   a, button {
