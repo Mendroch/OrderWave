@@ -1,0 +1,16 @@
+{
+    "dashboard__welcome": "Welcome to",
+    "dashboard__text--top": "Application designed to streamline the process of ordering food, offering customers a seamless and enjoyable experience without the need to wait in queues. Furthermore, solution significantly enhances the efficiency of restaurant operations.",
+    "dashboard__text--bottom": "Choose the right option for you below.",
+    "dashboard__client": "Restaurant Client",
+    "dashboard__owner": "Restaurant Owner",
+
+    "navigation__orders": "Orders",
+    "navigation__food": "Food",
+    "navigation__dishes": "Dishes",
+    "navigation__sections": "Sections",
+    "navigation__restaurant": "Restaurant",
+    "navigation__lang": "Change language",
+    "navigation__en": "English",
+    "navigation__pl": "Polish"
+}

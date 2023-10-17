@@ -53,17 +53,18 @@ export const ButtonWrapper = styled.div`
 `;
 
 export const Link = styled(NavLink)`
-  padding: 24px 80px;
+  padding: 24px 0;
+  width: 345px;
   background-color: ${({ theme }) => theme.colors.purple};
   color: ${({ theme }) => theme.colors.white};
   font-family: "Amarante", sans-serif;
   font-size: ${({ theme }) => theme.fontSize.xl};
   text-decoration: none;
+  text-align: center;
   border-radius: 5px;
 
   @media (max-width: 425px) {
     width: 100%;
     padding: 24px 0;
-    text-align: center;
   }
 `;

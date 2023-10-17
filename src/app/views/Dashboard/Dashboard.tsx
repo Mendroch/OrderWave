@@ -1,24 +1,25 @@
+import { useTranslation } from "react-i18next";
 import { Link, ButtonWrapper, Header, Paragraph, Wrapper } from "./Dashboard.styles";
 import icon from "../../assets/icons/icon.png";
 
 const Dashboard = () => {
+  const { t } = useTranslation();
+
   return (
     <Wrapper>
       <Header>
-        <p>Welcome to&nbsp;</p>
+        <p>{t("dashboard__welcome")}&nbsp;</p>
         <img src={icon} alt="app icon" />
         <p>OrderWave</p>
       </Header>
       <Paragraph>
-        Application designed to streamline the process of ordering food, offering customers a
-        seamless and enjoyable experience without the need to wait in queues. Furthermore, solution
-        significantly enhances the efficiency of restaurant operations.
+        {t("dashboard__text--top")}
         <br />
-        Choose the right option for you below.
+        {t("dashboard__text--bottom")}
       </Paragraph>
       <ButtonWrapper>
-        <Link to="/client/menu">Restaurant Client</Link>
-        <Link to="/owner/orders">Restaurant Owner</Link>
+        <Link to="/client/menu">{t("dashboard__client")}</Link>
+        <Link to="/owner/orders">{t("dashboard__owner")}</Link>
       </ButtonWrapper>
     </Wrapper>
   );

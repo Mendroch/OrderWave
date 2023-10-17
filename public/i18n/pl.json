@@ -1,0 +1,16 @@
+{
+    "dashboard__welcome": "Witaj w",
+    "dashboard__text--top": "Aplikacja stworzona w celu usprawnienia procesu zamawiania jedzenia, oferując klientom płynną i przyjemną obsługę bez konieczności czekania w kolejkach. Ponadto rozwiązanie znacząco podnosi efektywność działania restauracji.",
+    "dashboard__text--bottom": "Wybierz poniżej odpowiednią dla siebie opcję.",
+    "dashboard__client": "Klient Restauracji",
+    "dashboard__owner": "Właściciel Restauracji",
+
+    "navigation__orders": "Zamówienia",
+    "navigation__food": "Jedzenie",
+    "navigation__dishes": "Dania",
+    "navigation__sections": "Sekcje",
+    "navigation__restaurant": "Restauracja",
+    "navigation__lang": "Zmień język",
+    "navigation__en": "Angielski",
+    "navigation__pl": "Polski"
+}
