@@ -1,8 +1,12 @@
+import OrdersList from "../../components/molecules/OrdersList/OrdersList";
+import { Wrapper } from "./Orders.styles";
+import { orders } from "../../constants/orders";
+
 const Orders = () => {
   return (
-    <>
-      <h1>This is Orders view</h1>
-    </>
+    <Wrapper>
+      <OrdersList orders={orders} />
+    </Wrapper>
   );
 };
 

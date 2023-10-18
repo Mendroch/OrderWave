@@ -12,12 +12,12 @@ const OwnerTemplate = () => {
   };
 
   return (
-    <div>
+    <>
       <Header toggleNavigation={toggleNavigation} />
       <Navigation isOpen={isOpen} toggleNavigation={toggleNavigation} />
       <Shadow isOpen={isOpen} toggleNavigation={toggleNavigation} />
       <Outlet />
-    </div>
+    </>
   );
 };
 
