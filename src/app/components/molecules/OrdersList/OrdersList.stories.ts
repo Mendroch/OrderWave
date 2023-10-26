@@ -22,6 +22,8 @@ const orders = [
       },
     ],
     __v: 0,
+    deliveryMethod: "tableService",
+    tableNumber: 123,
   },
   {
     _id: "650874963b3cdf2b77aad029",
@@ -43,6 +45,7 @@ const orders = [
       },
     ],
     __v: 0,
+    deliveryMethod: "pickUp",
   },
   {
     _id: "650b03e846025f6e0d043576",
@@ -64,6 +67,7 @@ const orders = [
       },
     ],
     __v: 0,
+    deliveryMethod: "takeAway",
   },
 ];
 

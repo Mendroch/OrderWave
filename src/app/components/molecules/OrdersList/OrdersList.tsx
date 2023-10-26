@@ -1,17 +1,23 @@
-import { Wrapper } from "./OrdersList.styles";
+import { Item, Wrapper } from "./OrdersList.styles";
 import { IOrder, IOrders } from "../../../types/Orders";
 
 interface OrdersListProps {
   orders: IOrders;
+  activeOrderId: string;
+  setActiveOrderId: (number: string) => void;
 }
 
-const OrdersList = ({ orders }: OrdersListProps) => {
+const OrdersList = ({ orders, activeOrderId, setActiveOrderId }: OrdersListProps) => {
   return (
     <Wrapper>
       {orders.map((order: IOrder) => (
-        <div key={order.number}>
+        <Item
+          key={order._id}
+          onClick={() => setActiveOrderId(order._id)}
+          $isactive={activeOrderId === order._id}
+        >
           <p>#{order.number}</p>
-        </div>
+        </Item>
       ))}
     </Wrapper>
   );

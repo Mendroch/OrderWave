@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 
 export const Menu = styled(motion.div)`
-  z-index: 1;
+  z-index: 2;
   position: absolute;
   top: 0;
   bottom: 0;

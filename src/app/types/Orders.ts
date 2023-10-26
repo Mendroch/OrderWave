@@ -10,6 +10,8 @@ export interface IOrder {
   _id: string;
   number: number;
   dishesList: IOrderedDish[];
+  deliveryMethod: string;
+  tableNumber?: number;
   __v: number;
 }
 

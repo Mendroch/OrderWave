@@ -13,7 +13,7 @@ const Button = ({ isActive = true, onClick, children }: ButtonProps) => {
   };
 
   return (
-    <StyledButton isActive={isActive} onClick={handleClick}>
+    <StyledButton $isactive={isActive} onClick={handleClick}>
       {children}
     </StyledButton>
   );
