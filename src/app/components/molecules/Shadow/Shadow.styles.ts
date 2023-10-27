@@ -7,10 +7,10 @@ interface WrapperProps {
 
 export const Wrapper = styled(motion.div)<WrapperProps>`
   display: ${(props) => (props.$isdisplayed ? "block" : "none")};
-  position: absolute;
+  position: fixed;
   top: 0;
   width: 100%;
   height: 100%;
   background: ${({ theme }) => theme.colors.shadow};
-  z-index: 1;
+  z-index: 5;
 `;

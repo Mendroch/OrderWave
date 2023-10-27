@@ -11,15 +11,10 @@ export const GlobalStyles = createGlobalStyle`
   
   body {
     font-family: 'Inter', sans-serif;
-    background-color: ${({ theme }) => theme.colors.white};
-    overflow: hidden;
-  }
-  
-  a, button {
-    font-family: 'Inter', sans-serif;
+    background: ${({ theme }) => theme.colors.lightGray};
   }
 
-  a, button {
+  a, button, div, label {
     font-family: 'Inter', sans-serif;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   }

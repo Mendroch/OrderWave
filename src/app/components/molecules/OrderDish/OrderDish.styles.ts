@@ -8,6 +8,7 @@ export const Wrapper = styled.div`
   justify-content: space-between;
   position: relative;
   min-width: 230px;
+  max-width: 400px;
   column-gap: 30px;
   background: ${({ theme }) => theme.colors.white};
   border: 1px solid ${({ theme }) => theme.colors.gray};

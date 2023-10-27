@@ -2,15 +2,16 @@ import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 
 export const Wrapper = styled.div`
+  margin: 42px auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 0 auto;
   padding: 21px;
   max-width: ${({ theme }) => theme.width.dashboardContainer};
 
-  @media (min-width: 425px) {
+  @media (min-width: 427px) {
+    margin: 0 auto;
     height: 100vh;
   }
 `;
@@ -27,7 +28,7 @@ export const Header = styled.div`
     width: 32px;
   }
 
-  @media (max-width: 425px) {
+  @media (max-width: 398px) {
     font-size: ${({ theme }) => theme.fontSize.xl};
 
     img {
@@ -63,7 +64,7 @@ export const Link = styled(NavLink)`
   text-align: center;
   border-radius: 5px;
 
-  @media (max-width: 425px) {
+  @media (max-width: 426px) {
     width: 100%;
     padding: 24px 0;
   }

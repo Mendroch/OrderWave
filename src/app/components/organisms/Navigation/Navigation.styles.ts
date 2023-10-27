@@ -2,13 +2,13 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 
 export const Menu = styled(motion.div)`
-  z-index: 2;
-  position: absolute;
+  position: fixed;
   top: 0;
   bottom: 0;
   right: -304px;
   width: 304px;
   background-color: ${({ theme }) => theme.colors.white};
+  z-index: 6;
 `;
 
 export const TopBar = styled.div`
