@@ -10,11 +10,22 @@ export const ordersApi = createApi({
       return headers;
     },
   }),
-  endpoints: (builder) => ({
-    getOrders: builder.query<IOrder, string>({
+  tagTypes: ["Order"],
+  endpoints: (build) => ({
+    getOrders: build.query<IOrder, string>({
       query: () => "/",
+      providesTags: ["Order"],
+    }),
+    deleteOrder: build.mutation<{ success: boolean; id: string }, string>({
+      query(id) {
+        return {
+          url: `/${id}`,
+          method: "DELETE",
+        };
+      },
+      invalidatesTags: ["Order"],
     }),
   }),
 });
 
-export const { useGetOrdersQuery } = ordersApi;
+export const { useGetOrdersQuery, useDeleteOrderMutation } = ordersApi;

@@ -7,14 +7,42 @@ import ActionStrip from "../../components/molecules/ActionStrip/ActionStrip";
 import { checkActivity } from "../../helpers/checkActivity";
 import { EmptyInfo } from "../../components/atoms/EmptyInfo/EmptyInfo.styles";
 import { IOrders, IOrder, IOrderedDish } from "../../types/Orders";
-import { useGetOrdersQuery } from "../../features/order-slice";
+import { useGetOrdersQuery, useDeleteOrderMutation } from "../../features/order-slice";
+import Modal from "../../components/organisms/Modal/Modal";
+import useModal from "../../components/organisms/Modal/useModal";
+import DecisionModal from "../../components/molecules/DecisionModal/DecisionModal";
+import Notification from "../../components/molecules/Notification/Notification";
 
 const Orders = () => {
-  const { currentData, isLoading, isError } = useGetOrdersQuery("");
+  const { currentData, isLoading, isError } = useGetOrdersQuery("", {
+    pollingInterval: 3000,
+    refetchOnMountOrArgChange: true,
+    skip: false,
+  });
   const [activeOrderId, setActiveOrderId] = useState<string>("");
+  const [deleteOrder] = useDeleteOrderMutation();
   const [activeOrder, setActiveOrder] = useState<IOrder | undefined>(undefined);
   const [isActive, setIsActive] = useState(false);
   const { t } = useTranslation();
+  const { isOpen, handleOpenModal, handleCloseModal } = useModal();
+  const [isNotificationOpen, setIsNotificationOpen] = useState(false);
+  const [notificationProps, setNotificationProps] = useState({
+    isSuccess: true,
+    notification: "",
+  });
+
+  const toggleNotification = () => setIsNotificationOpen(!isNotificationOpen);
+
+  const handleDeleteOrder = async (id: string) => {
+    try {
+      await deleteOrder(id).unwrap();
+      setNotificationProps({ isSuccess: true, notification: t("notification__order--success") });
+      toggleNotification();
+    } catch {
+      setNotificationProps({ isSuccess: false, notification: t("notification__order--error") });
+      toggleNotification();
+    }
+  };
 
   useEffect(() => {
     if (activeOrderId && currentData) {
@@ -30,9 +58,9 @@ const Orders = () => {
     if (currentData) setActiveOrderId(currentData[0]?._id);
   }, [currentData]);
 
-  if (isError) return <EmptyInfo>An error has occurred!</EmptyInfo>;
+  if (isError) return <EmptyInfo>{t("error")}</EmptyInfo>;
 
-  if (isLoading) return <EmptyInfo>Loading data...</EmptyInfo>;
+  if (isLoading) return <EmptyInfo>{t("loading")}</EmptyInfo>;
 
   return (
     <Wrapper>
@@ -52,8 +80,27 @@ const Orders = () => {
             deliveryMethod={activeOrder.deliveryMethod}
             tableNumber={activeOrder.tableNumber}
             isActive={isActive}
-            onClick={isActive ? () => {} : () => {}}
+            onClick={
+              isActive
+                ? () => {
+                    handleOpenModal();
+                  }
+                : () => {}
+            }
           />
+          <Notification
+            isOpen={isNotificationOpen}
+            toggle={toggleNotification}
+            props={notificationProps}
+          />
+          <Modal isOpen={isOpen}>
+            <DecisionModal
+              question={t("modal__order--question")}
+              description={t("modal__order--description")}
+              handleClose={handleCloseModal}
+              onConfirm={() => handleDeleteOrder(activeOrderId)}
+            />
+          </Modal>
         </>
       ) : (
         <EmptyInfo>{t("orders__noOrders")}</EmptyInfo>

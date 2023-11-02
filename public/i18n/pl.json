@@ -14,10 +14,22 @@
     "dashboard__client": "Klient Restauracji",
     "dashboard__owner": "Właściciel Restauracji",
 
-    "orders__confirm": "Zatwierdź zrealizowanie zamówienia",
+    "orders__confirm": "Potwierdź zrealizowanie zamówienia",
     "orders__deliveryMethod": "Sposób dostawy",
     "orders__tableService": "Stolik numer",
     "orders__pickUp": "Odbiór",
     "orders__takeAway": "Na wynos",
-    "orders__noOrders": "Aktualnie nie ma żadnych zamówień do realizacji"
+    "orders__noOrders": "Aktualnie nie ma żadnych zamówień do realizacji",
+
+    "modal__confirm": "POTWIERDŹ",
+    "modal__cancel": "ANULUJ",
+
+    "modal__order--question": "Potwierdzić zamówienie?",
+    "modal__order--description": "Klient zostanie powiadomiony o zrealizowaniu zamówienia",
+
+    "notification__order--success": "Zamówienie zrealizowane",
+    "notification__order--error": "Zamówienie nie zrealizowane",
+
+    "error": "Wystąpił błąd!",
+    "loading": "Ładowanie danych..."
 }

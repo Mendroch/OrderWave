@@ -19,5 +19,17 @@
     "orders__tableService": "Table number",
     "orders__pickUp": "Pick Up",
     "orders__takeAway": "Take away",
-    "orders__noOrders": "Currently, there are no orders to process"
+    "orders__noOrders": "Currently, there are no orders to process",
+
+    "modal__confirm": "CONFIRM",
+    "modal__cancel": "CANCEL",
+
+    "modal__order--question": "Confirm the order?",
+    "modal__order--description": "The customer will be notified about the completed order",
+
+    "notification__order--success": "Order processed",
+    "notification__order--error": "Order not processed",
+
+    "error": "An error has occurred!",
+    "loading": "Loading data..."
 }
