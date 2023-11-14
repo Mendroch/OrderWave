@@ -31,5 +31,25 @@
     "notification__order--error": "Zamówienie nie zrealizowane",
 
     "error": "Wystąpił błąd!",
-    "loading": "Ładowanie danych..."
+    "loading": "Ładowanie danych...",
+
+    "dish__noDishes": "Aktualnie nie ma żadnych dań",
+    "dish__delete--success": "Danie zostało usunięte",
+    "dish__delete--error": "Danie nie zostało usunięte",
+    "modal__dish__delete--question": "Usunąć danie?",
+    "modal__dish__delete--description": "Ta zmiana jest nieodwracalna",
+    "dish__preview": "Podgląd Dania",
+    "dish__name": "Nazwa",
+    "dish__description": "Opis",
+    "dish__isAvailable": "Dostępny",
+    "dish__section": "Sekcja",
+    "dish__allergens": "Alergeny",
+    "dish__variants": "Warianty",
+    "dish__extraIngredients": "Dodatkowe składniki",
+    "dish__removableIngredients": "Składniki do usunięcia",
+    "dish__picture": "Obraza",
+    "dish__price": "Cena",
+
+    "yes": "TAK",
+    "no": "NIE"
 }

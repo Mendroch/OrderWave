@@ -15,7 +15,7 @@ export const OrderDishes = styled.div`
   align-content: flex-start;
   align-items: flex-start;
   flex-wrap: wrap;
-  gap: 21px;
+  gap: 16px;
 
   @media (max-width: 427px) {
     margin: 116px 0 133px 0;

@@ -8,6 +8,7 @@ import Dashboard from "./Dashboard/Dashboard";
 import Orders from "./Orders/Orders";
 import OwnerTemplate from "../components/templates/OwnerTemplate/OwnerTemplate";
 import { store } from "../store/store";
+import Dishes from "./Dishes/Dishes";
 
 const App = () => {
   return (
@@ -28,7 +29,7 @@ const App = () => {
               <Route path="/owner" element={<OwnerTemplate />}>
                 <Route index element={<Navigate to="orders" />} />
                 <Route path="orders" element={<Orders />} />
-                <Route path="dishes" element={<h1>Dishes</h1>} />
+                <Route path="dishes" element={<Dishes />} />
                 <Route path="sections" element={<h1>Sections</h1>} />
                 <Route path="restaurant" element={<h1>Restaurant</h1>} />
                 <Route path="*" element={<h1>404</h1>} />

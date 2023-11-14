@@ -20,7 +20,7 @@ const OwnerTemplate = () => {
     <Wrapper>
       <Header toggleNavigation={toggleNavigation} />
       <Navigation isOpen={isOpen} toggleNavigation={toggleNavigation} />
-      <Shadow isOpen={isOpen} toggleNavigation={toggleNavigation} />
+      <Shadow isOpen={isOpen} toggle={toggleNavigation} />
       <Outlet />
     </Wrapper>
   );

@@ -15,7 +15,7 @@ interface NotificationProps {
 const Notification = ({ isOpen, toggle, props }: NotificationProps) => {
   useEffect(() => {
     if (isOpen) {
-      setTimeout(toggle, 2000);
+      setTimeout(toggle, 3000);
     }
   }, [isOpen]);
 

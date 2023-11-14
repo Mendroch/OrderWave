@@ -4,10 +4,10 @@ import { Wrapper } from "./Shadow.styles";
 
 interface ShadowProps {
   isOpen: boolean;
-  toggleNavigation: () => void;
+  toggle: () => void;
 }
 
-const Shadow = ({ isOpen, toggleNavigation }: ShadowProps) => {
+const Shadow = ({ isOpen, toggle }: ShadowProps) => {
   const [isDisplayed, setIsDisplayed] = useState(false);
 
   useEffect(() => {
@@ -21,7 +21,7 @@ const Shadow = ({ isOpen, toggleNavigation }: ShadowProps) => {
   return (
     <Wrapper
       $isdisplayed={isDisplayed}
-      onClick={toggleNavigation}
+      onClick={toggle}
       animate={{ opacity: isOpen ? 1 : 0 }}
       transition={{ ease: "easeOut", duration: 0.2 }}
     />

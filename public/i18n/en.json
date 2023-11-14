@@ -31,5 +31,25 @@
     "notification__order--error": "Order not processed",
 
     "error": "An error has occurred!",
-    "loading": "Loading data..."
+    "loading": "Loading data...",
+
+    "dish__noDishes": "Currently, there are no dishes",
+    "dish__delete--success": "Dish deleted",
+    "dish__delete--error": "Dish undeleted",
+    "modal__dish__delete--question": "Delete dish?",
+    "modal__dish__delete--description": "This change is permanently",
+    "dish__preview": "Dish Preview",
+    "dish__name": "Name",
+    "dish__description": "Description",
+    "dish__isAvailable": "is Available",
+    "dish__section": "Section",
+    "dish__allergens": "Allergens",
+    "dish__variants": "Variants",
+    "dish__extraIngredients": "Extra ingerdients",
+    "dish__removableIngredients": "Removable ingredients",
+    "dish__picture": "Pictue",
+    "dish__price": "Price",
+
+    "yes": "YES",
+    "no": "NO"
 }
