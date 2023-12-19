@@ -24,6 +24,6 @@
     "esm": true,
     "experimentalSpecifierResolution": "node"
   },
-  "include": ["src"],
+  "include": ["src", "src/app/components/molecules/FileInput/declaration.d.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

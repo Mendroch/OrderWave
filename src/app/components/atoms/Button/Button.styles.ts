@@ -8,6 +8,7 @@ export const StyledButton = styled.button<StyledButtonProps>`
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
   width: 100%;
   height: 48px;
   color: ${(props) =>

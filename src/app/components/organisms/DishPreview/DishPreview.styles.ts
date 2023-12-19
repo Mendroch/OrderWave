@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 export const Wrapper = styled(motion.div)`
   position: fixed;
-  bottom: -808px;
+  bottom: -800px;
   left: 0;
   width: 100vw;
   max-height: min(800px, 80%);

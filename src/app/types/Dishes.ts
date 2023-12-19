@@ -5,8 +5,20 @@ export interface IDish {
   isAvailable: boolean;
   section: string;
   allergens?: string[];
-  variants?: string[];
-  extraIngredients?: string[];
+  variants?: [
+    {
+      name: string;
+      extraPrice: number;
+      _id: string;
+    },
+  ];
+  extraIngredients?: [
+    {
+      name: string;
+      extraPrice: number;
+      _id: string;
+    },
+  ];
   removableIngredients?: string[];
   picture?: Buffer;
   pictureType: string;

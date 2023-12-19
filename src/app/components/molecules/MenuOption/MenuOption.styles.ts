@@ -72,6 +72,5 @@ export const SubOptions = styled.div<SubOptionsProps>`
     color: ${({ theme }) => theme.colors.black};
     background: none;
     text-decoration: none;
-    cursor: pointer;
   }
 `;

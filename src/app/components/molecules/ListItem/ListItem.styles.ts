@@ -10,6 +10,10 @@ export const Wrapper = styled.div`
   border: 1px solid ${({ theme }) => theme.colors.gray};
   border-radius: 4px;
 
+  &:not(:last-of-type) {
+    margin-bottom: 8px;
+  }
+
   img {
     width: 24px;
   }

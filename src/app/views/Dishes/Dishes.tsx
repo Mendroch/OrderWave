@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import ListItem from "../../components/molecules/ListItem/ListItem";
 import { Wrapper } from "./Dishes.styles";
@@ -10,6 +10,9 @@ import Modal from "../../components/organisms/Modal/Modal";
 import DecisionModal from "../../components/molecules/DecisionModal/DecisionModal";
 import useModal from "../../components/organisms/Modal/useModal";
 import DishPreview from "../../components/organisms/DishPreview/DishPreview";
+import Button from "../../components/atoms/Button/Button";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { ActionStripWrapper } from "../../components/atoms/ActionStripWrapper/ActionStripWrapper.styles";
 
 const Dishes = () => {
   const { currentData, isLoading, isError } = useGetDishesQuery("");
@@ -23,18 +26,28 @@ const Dishes = () => {
     notification: "",
   });
   const [clickedDishId, setClickedDishId] = useState("");
+  const location = useLocation();
+  const navigate = useNavigate();
 
-  const toggleNotification = () => setIsNotificationOpen(!isNotificationOpen);
+  useEffect(() => {
+    if (location.state && location.state.notification) {
+      setNotificationProps({ isSuccess: true, notification: location.state.notification });
+      setIsNotificationOpen(true);
+      navigate(location.pathname, { state: { ...location.state, notification: undefined } });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location]);
+
   const togglePreview = () => setIsPreviewOpen(!isPreviewOpen);
 
   const handleDeleteDish = async (id: string) => {
     try {
       await deleteDish(id).unwrap();
       setNotificationProps({ isSuccess: true, notification: t("dish__delete--success") });
-      toggleNotification();
+      setIsNotificationOpen(true);
     } catch {
       setNotificationProps({ isSuccess: false, notification: t("dish__delete--error") });
-      toggleNotification();
+      setIsNotificationOpen(true);
     }
   };
 
@@ -65,9 +78,14 @@ const Dishes = () => {
           {currentData.map((dish: IDish) => (
             <ListItem key={dish._id} id={dish._id} name={dish.name} />
           ))}
+          <ActionStripWrapper>
+            <NavLink to={"/owner/newdish"}>
+              <Button onClick={() => {}}>{t("dish__new")}</Button>
+            </NavLink>
+          </ActionStripWrapper>
           <Notification
             isOpen={isNotificationOpen}
-            toggle={toggleNotification}
+            toggle={() => setIsNotificationOpen(false)}
             props={notificationProps}
           />
           <Modal isOpen={isOpen}>

@@ -8,7 +8,6 @@ export const NavigationButton = styled.button`
   background-color: ${({ theme }) => theme.colors.white};
 
   &:hover {
-    cursor: pointer;
     background-color: ${({ theme }) => theme.colors.lightGray};
   }
 

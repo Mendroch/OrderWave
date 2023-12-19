@@ -37,5 +37,4 @@ export const CancelButton = styled.button`
   background: ${({ theme }) => theme.colors.white};
   border: 2px solid ${({ theme }) => theme.colors.darkPurple};
   border-radius: 4px;
-  cursor: pointer;
 `;

@@ -19,6 +19,10 @@ export const GlobalStyles = createGlobalStyle`
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   }
 
+  a, button, label {
+    cursor: pointer;
+  }
+
   p {
     margin: 0;
   }

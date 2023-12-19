@@ -17,6 +17,7 @@ const Notification = ({ isOpen, toggle, props }: NotificationProps) => {
     if (isOpen) {
       setTimeout(toggle, 3000);
     }
+    // eslint-disable-next-line
   }, [isOpen]);
 
   return (

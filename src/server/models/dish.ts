@@ -7,8 +7,18 @@ interface IDish extends Document {
   section: string;
   sectionId: mongoose.Schema.Types.ObjectId;
   allergens?: string[];
-  variants?: string[];
-  extraIngredients?: string[];
+  variants?: [
+    {
+      name: string;
+      extraPrice: number;
+    },
+  ];
+  extraIngredients?: [
+    {
+      name: string;
+      extraPrice: number;
+    },
+  ];
   removableIngredients?: string[];
   picture?: Buffer;
   pictureType: string;
@@ -22,8 +32,18 @@ const dishSchema = new Schema<IDish>({
   section: { type: String, required: true },
   sectionId: { type: mongoose.Schema.Types.ObjectId, required: true, ref: "Section" },
   allergens: [String],
-  variants: [String],
-  extraIngredients: [String],
+  variants: [
+    {
+      name: String,
+      extraPrice: Number,
+    },
+  ],
+  extraIngredients: [
+    {
+      name: String,
+      extraPrice: Number,
+    },
+  ],
   removableIngredients: [String],
   picture: Buffer,
   pictureType: String,
