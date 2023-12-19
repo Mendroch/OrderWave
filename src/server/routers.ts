@@ -5,16 +5,11 @@ import { SectionModel } from "./models/section";
 import { OrderModel } from "./models/order";
 import { RestaurantModel } from "./models/restaurant";
 import { getController, postController, putController, deleteController } from "./controllers";
-// import { dishPostController } from "./CustomControllers/dishPostController";
 
 const createRouter = (model: Model<any>) => {
   const router = express.Router();
 
   router.get("/", getController({ model }));
-
-  // if (model === DishModel) router.post("/", dishPostController({ model }));
-  // else router.post("/", postController({ model }));
-
   router.post("/", postController({ model }));
   router.put("/:id", putController({ model }));
   router.delete("/:id", deleteController({ model }));
