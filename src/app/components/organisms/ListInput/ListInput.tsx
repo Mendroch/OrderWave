@@ -8,6 +8,7 @@ interface ListInputProps {
   inputName: string;
   withPrice?: boolean;
   cb: (data: any) => void;
+  defaultValue?: string[] | [{ name: string; extraPrice: number }];
 }
 
 const reducer = (items: any, action: any) => {
@@ -16,10 +17,10 @@ const reducer = (items: any, action: any) => {
     : items.filter((item: string) => item !== action.payload);
 };
 
-const ListInput = ({ inputName, withPrice = false, cb }: ListInputProps) => {
+const ListInput = ({ inputName, withPrice = false, cb, defaultValue = [] }: ListInputProps) => {
   const [name, setName] = useState("");
   const [extraPrice, setExtraPrice] = useState("");
-  const [items, dispatch] = useReducer(reducer, []);
+  const [items, dispatch] = useReducer(reducer, defaultValue);
   const { t } = useTranslation();
 
   useEffect(() => {

@@ -10,6 +10,7 @@ import OwnerTemplate from "../components/templates/OwnerTemplate/OwnerTemplate";
 import { store } from "../store/store";
 import Dishes from "./Dishes/Dishes";
 import NewDish from "./NewDish/NewDish";
+import EditDish from "./EditDish/EditDish";
 
 const App = () => {
   return (
@@ -32,6 +33,7 @@ const App = () => {
                 <Route path="orders" element={<Orders />} />
                 <Route path="dishes" element={<Dishes />} />
                 <Route path="newdish" element={<NewDish />} />
+                <Route path="editdish" element={<EditDish />} />
                 <Route path="sections" element={<h1>Sections</h1>} />
                 <Route path="restaurant" element={<h1>Restaurant</h1>} />
                 <Route path="*" element={<h1>404</h1>} />

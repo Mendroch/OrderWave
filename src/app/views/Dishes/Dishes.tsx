@@ -35,7 +35,7 @@ const Dishes = () => {
       setIsNotificationOpen(true);
       navigate(location.pathname, { state: { ...location.state, notification: undefined } });
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line
   }, [location]);
 
   const togglePreview = () => setIsPreviewOpen(!isPreviewOpen);
@@ -52,14 +52,21 @@ const Dishes = () => {
   };
 
   const handleClick = (e: any) => {
-    if (e.target.parentNode.id && e.target.parentNode.parentNode.id) {
-      setClickedDishId(e.target.parentNode.parentNode.id);
+    const dishId = e.target.parentNode.parentNode.id;
+    if (e.target.parentNode.id && dishId) {
+      setClickedDishId(dishId);
       switch (e.target.parentNode.id) {
-        case "delete":
-          handleOpenModal();
-          break;
         case "preview":
           togglePreview();
+          break;
+        case "edit":
+          if (currentData)
+            navigate("/owner/editdish", {
+              state: { dishData: currentData.find((dish: IDish) => dish._id === dishId) },
+            });
+          break;
+        case "delete":
+          handleOpenModal();
           break;
         default:
           () => {};

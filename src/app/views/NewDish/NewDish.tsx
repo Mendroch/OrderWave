@@ -55,7 +55,9 @@ const NewDish = () => {
 
     try {
       await createDish(mockedData).unwrap();
-      navigate("/owner/dishes", { state: { notification: t("dish__create--success") } });
+      navigate("/owner/dishes", {
+        state: { notification: t("notification__dish__create--success") },
+      });
     } catch {
       setIsNotificationOpen(true);
     }
@@ -180,7 +182,7 @@ const NewDish = () => {
         toggle={() => setIsNotificationOpen(false)}
         props={{
           isSuccess: false,
-          notification: t("dish__create--error"),
+          notification: t("notification__dish__create--error"),
         }}
       />
       <Modal isOpen={isOpen}>

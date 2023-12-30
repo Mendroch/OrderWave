@@ -6,14 +6,17 @@ import FilePondPluginImagePreview from "filepond-plugin-image-preview";
 import FilePondPluginImageResize from "filepond-plugin-image-resize";
 import FilePondPluginImageTransform from "filepond-plugin-image-transform";
 import FilePondPluginImageEdit from "filepond-plugin-image-edit";
+import FilePondPluginFileValidateType from "filepond-plugin-file-validate-type";
 import "filepond/dist/filepond.min.css";
 import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
 import "filepond-plugin-image-edit/dist/filepond-plugin-image-edit.css";
 import "../../../vendor/doka.min.css";
 import { create } from "../../../vendor/doka.esm.min.js";
+import { FilePondInitialFile } from "filepond";
 
 interface FileInputProps {
   setImage: (data: string) => void;
+  defaultValue?: string;
 }
 
 registerPlugin(
@@ -21,11 +24,23 @@ registerPlugin(
   FilePondPluginImagePreview,
   FilePondPluginImageResize,
   FilePondPluginImageTransform,
-  FilePondPluginImageEdit
+  FilePondPluginImageEdit,
+  FilePondPluginFileValidateType
 );
 
-const FileInput = ({ setImage }: FileInputProps) => {
-  const [pondFiles, setPondFiles] = useState([]);
+const FileInput = ({ setImage, defaultValue = "" }: FileInputProps) => {
+  const [pondFiles, setPondFiles] = useState<FilePondInitialFile[]>(
+    defaultValue.length
+      ? [
+          {
+            source: defaultValue,
+            options: {
+              type: "local",
+            },
+          },
+        ]
+      : []
+  );
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -55,9 +70,13 @@ const FileInput = ({ setImage }: FileInputProps) => {
         cropMinImageWidth: 0,
         cropMinImageHeight: 0,
       })}
+      acceptedFileTypes={["image/png", "image/jpeg", "image/gif"]}
       labelIdle={`${t("filepond__direction")} <span class="filepond--label-action">${t(
         "filepond__browse"
       )}</span>`}
+      labelFileLoading={`${t("filepond__loading")}`}
+      labelFileWaitingForSize={`${t("filepond__size")}`}
+      labelTapToCancel={`${t("filepond__cancel")}`}
     />
   );
 };

@@ -18,12 +18,23 @@ export const dishesApi = createApi({
     }),
     getDish: build.query<IDish, string>({
       query: (id) => `/${id}`,
+      providesTags: ["Dish"],
     }),
     createDish: build.mutation<{ success: boolean; id: string }, string>({
       query(data) {
         return {
           url: "/",
           method: "POST",
+          body: data,
+        };
+      },
+      invalidatesTags: ["Dish"],
+    }),
+    updateDish: build.mutation<{ success: boolean; id: string }, { id: string; data: any }>({
+      query({ id, data }) {
+        return {
+          url: `/${id}`,
+          method: "PUT",
           body: data,
         };
       },
@@ -41,5 +52,10 @@ export const dishesApi = createApi({
   }),
 });
 
-export const { useGetDishesQuery, useGetDishQuery, useCreateDishMutation, useDeleteDishMutation } =
-  dishesApi;
+export const {
+  useGetDishesQuery,
+  useGetDishQuery,
+  useCreateDishMutation,
+  useUpdateDishMutation,
+  useDeleteDishMutation,
+} = dishesApi;
