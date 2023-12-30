@@ -16,6 +16,9 @@ export const dishesApi = createApi({
       query: () => "/",
       providesTags: ["Dish"],
     }),
+    getDish: build.query<IDish, string>({
+      query: (id) => `/${id}`,
+    }),
     createDish: build.mutation<{ success: boolean; id: string }, string>({
       query(data) {
         return {
@@ -38,4 +41,5 @@ export const dishesApi = createApi({
   }),
 });
 
-export const { useGetDishesQuery, useCreateDishMutation, useDeleteDishMutation } = dishesApi;
+export const { useGetDishesQuery, useGetDishQuery, useCreateDishMutation, useDeleteDishMutation } =
+  dishesApi;
