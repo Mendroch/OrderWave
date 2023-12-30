@@ -5,10 +5,22 @@ interface ControllerOptions {
   model: Model<any>;
 }
 
-export const getController = ({ model }: ControllerOptions) => {
+export const getAllController = ({ model }: ControllerOptions) => {
   return async (_: Request, res: Response) => {
     try {
       const data = await model.find();
+      res.status(200).json(data);
+    } catch (error) {
+      console.error("An error occurred while retrieving data", error);
+      res.status(500).json({ error: "An error occurred while processing the request" });
+    }
+  };
+};
+
+export const getSingleController = ({ model }: ControllerOptions) => {
+  return async (req: Request, res: Response) => {
+    try {
+      const data = await model.findById(req.params.id);
       res.status(200).json(data);
     } catch (error) {
       console.error("An error occurred while retrieving data", error);
