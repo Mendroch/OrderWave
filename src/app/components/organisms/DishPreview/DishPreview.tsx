@@ -8,7 +8,7 @@ import {
   Title,
   Variants,
   Wrapper,
-} from "./DishPreview.styles";
+} from "../../atoms/PreviewStyles/PreviewStyles.styles";
 import close from "../../../assets/icons/close.png";
 import { IDish } from "../../../types/Dishes";
 import Shadow from "../../molecules/Shadow/Shadow";

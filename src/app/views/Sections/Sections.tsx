@@ -1,22 +1,22 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import ListItem from "../../components/molecules/ListItem/ListItem";
-import { Wrapper } from "./Dishes.styles";
-import { useGetDishesQuery, useDeleteDishMutation } from "../../features/dish-slice";
+import { Wrapper } from "./Sections.styles";
+import { useDeleteSectionMutation, useGetSectionsQuery } from "../../features/section-slice";
 import { EmptyInfo } from "../../components/atoms/EmptyInfo/EmptyInfo.styles";
-import { IDish } from "../../types/Dishes";
 import Notification from "../../components/molecules/Notification/Notification";
 import Modal from "../../components/organisms/Modal/Modal";
 import DecisionModal from "../../components/molecules/DecisionModal/DecisionModal";
 import useModal from "../../components/organisms/Modal/useModal";
-import DishPreview from "../../components/organisms/DishPreview/DishPreview";
 import Button from "../../components/atoms/Button/Button";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { ActionStripWrapper } from "../../components/atoms/ActionStripWrapper/ActionStripWrapper.styles";
+import { ISection } from "../../types/Sections";
+import SectionPreview from "../../components/organisms/SectionPreview/SectionPreview";
 
-const Dishes = () => {
-  const { currentData, isLoading, isError } = useGetDishesQuery("");
-  const [deleteDish] = useDeleteDishMutation();
+const Sections = () => {
+  const { currentData, isLoading, isError } = useGetSectionsQuery("");
+  const [deleteSection] = useDeleteSectionMutation();
   const { t } = useTranslation();
   const { isOpen, handleOpenModal, handleCloseModal } = useModal();
   const [isNotificationOpen, setIsNotificationOpen] = useState(false);
@@ -25,7 +25,7 @@ const Dishes = () => {
     isSuccess: true,
     notification: "",
   });
-  const [clickedDishId, setClickedDishId] = useState("");
+  const [clickedSectionId, setClickedSectionId] = useState("");
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -40,35 +40,37 @@ const Dishes = () => {
 
   const togglePreview = () => setIsPreviewOpen(!isPreviewOpen);
 
-  const handleDeleteDish = async (id: string) => {
+  const handleDeleteSection = async (id: string) => {
     try {
-      await deleteDish(id).unwrap();
+      await deleteSection(id).unwrap();
       setNotificationProps({
         isSuccess: true,
-        notification: t("notification__dish__delete--success"),
+        notification: t("notification__section__delete--success"),
       });
       setIsNotificationOpen(true);
     } catch {
       setNotificationProps({
         isSuccess: false,
-        notification: t("notification__dish__delete--error"),
+        notification: t("notification__section__delete--error"),
       });
       setIsNotificationOpen(true);
     }
   };
 
   const handleClick = (e: any) => {
-    const dishId = e.target.parentNode.parentNode.id;
-    if (e.target.parentNode.id && dishId) {
-      setClickedDishId(dishId);
+    const sectionId = e.target.parentNode.parentNode.id;
+    if (e.target.parentNode.id && sectionId) {
+      setClickedSectionId(sectionId);
       switch (e.target.parentNode.id) {
         case "preview":
           togglePreview();
           break;
         case "edit":
           if (currentData)
-            navigate("/owner/editdish", {
-              state: { dishData: currentData.find((dish: IDish) => dish._id === dishId) },
+            navigate("/owner/editsection", {
+              state: {
+                sectionData: currentData.find((section: ISection) => section._id === sectionId),
+              },
             });
           break;
         case "delete":
@@ -88,12 +90,12 @@ const Dishes = () => {
     <Wrapper onClick={handleClick}>
       {currentData ? (
         <>
-          {currentData.map((dish: IDish) => (
-            <ListItem key={dish._id} id={dish._id} name={dish.name} />
+          {currentData.map((section: ISection) => (
+            <ListItem key={section._id} id={section._id} name={section.name} />
           ))}
           <ActionStripWrapper>
-            <NavLink to={"/owner/newdish"}>
-              <Button onClick={() => {}}>{t("dish__new")}</Button>
+            <NavLink to={"/owner/newsection"}>
+              <Button onClick={() => {}}>{t("section__new")}</Button>
             </NavLink>
           </ActionStripWrapper>
           <Notification
@@ -103,23 +105,23 @@ const Dishes = () => {
           />
           <Modal isOpen={isOpen}>
             <DecisionModal
-              question={t("modal__dish__delete--question")}
-              description={t("modal__dish__delete--description")}
+              question={t("modal__section__delete--question")}
+              description={t("modal__section__delete--description")}
               handleClose={handleCloseModal}
-              onConfirm={() => handleDeleteDish(clickedDishId)}
+              onConfirm={() => handleDeleteSection(clickedSectionId)}
             />
           </Modal>
-          <DishPreview
+          <SectionPreview
             isOpen={isPreviewOpen}
             toggle={togglePreview}
-            dish={currentData.find((elem: IDish) => elem._id === clickedDishId)}
+            section={currentData.find((elem: ISection) => elem._id === clickedSectionId)}
           />
         </>
       ) : (
-        <EmptyInfo>{t("dish__noDishes")}</EmptyInfo>
+        <EmptyInfo>{t("section__noSections")}</EmptyInfo>
       )}
     </Wrapper>
   );
 };
 
-export default Dishes;
+export default Sections;

@@ -5,6 +5,8 @@
   "navigation__newdish": "Dania",
   "navigation__editdish": "Dania",
   "navigation__sections": "Sekcje",
+  "navigation__newsection": "Sekcje",
+  "navigation__editsection": "Sekcje",
   "navigation__restaurant": "Restauracja",
   "navigation__lang": "Zmień język",
   "navigation__en": "Angielski",
@@ -25,8 +27,10 @@
 
   "modal__confirm": "POTWIERDŹ",
   "modal__cancel": "ANULUJ",
+
   "modal__order--question": "Potwierdzić zamówienie?",
   "modal__order--description": "Klient zostanie powiadomiony o zrealizowaniu zamówienia",
+
   "modal__dish__delete--question": "Usunąć danie?",
   "modal__dish__delete--description": "Ta zmiana jest nieodwracalna",
   "modal__dish__create--question": "Stworzyć danie?",
@@ -34,19 +38,34 @@
   "modal__dish__edit--question": "Czy edytować danie?",
   "modal__dish__edit--description": "Edycja dania zostanie przeprowadzona",
 
+  "modal__section__delete--question": "Usunąć sekcje?",
+  "modal__section__delete--description": "Ta zmiana jest nieodwracalna",
+  "modal__section__create--question": "Stworzyć sekcje?",
+  "modal__section__create--description": "Nowa sekcja zostanie utworzona",
+  "modal__section__edit--question": "Czy edytować sekcje?",
+  "modal__section__edit--description": "Edycja sekcji zostanie przeprowadzona",
+
   "notification__order--success": "Zamówienie zrealizowane",
   "notification__order--error": "Zamówienie nie zrealizowane",
+
   "notification__dish__create--success": "Danie zostało utworzone",
   "notification__dish__create--error": "Danie nie zostało utworzone",
   "notification__dish__edit--success": "Edycja dania zakończona",
   "notification__dish__edit--error": "Edycja nie powiodła się",
+  "notification__dish__delete--success": "Danie zostało usunięte",
+  "notification__dish__delete--error": "Danie nie zostało usunięte",
+
+  "notification__section__create--success": "Sekcja została utworzona",
+  "notification__section__create--error": "Sekcja nie została utworzona",
+  "notification__section__edit--success": "Edycja sekcji zakończona",
+  "notification__section__edit--error": "Edycja nie powiodła się",
+  "notification__section__delete--success": "Sekcja została usunięta",
+  "notification__section__delete--error": "Sekcja nie została usunięta",
 
   "error": "Wystąpił błąd!",
   "loading": "Ładowanie danych...",
 
   "dish__noDishes": "Aktualnie nie ma żadnych dań",
-  "dish__delete--success": "Danie zostało usunięte",
-  "dish__delete--error": "Danie nie zostało usunięte",
   "dish__new": "Dodaj nowe danie",
   "dish__confirm__new": "Potwierdź nowe danie",
   "dish__confirm__edit": "Potwierdź edycje dania",
@@ -54,6 +73,15 @@
   "dish__new__header": "Nowe danie",
   "dish__edit__header": "Edytuj danie",
   "dish__preview": "Podgląd Dania",
+
+  "section__noDishes": "Aktualnie nie ma żadnych sekcji",
+  "section__new": "Dodaj nową sekcje",
+  "section__confirm__new": "Potwierdź nową sekcje",
+  "section__confirm__edit": "Potwierdź edycje sekcji",
+  "section__back": "Powróć do sekcji",
+  "section__new__header": "Nowa sekcja",
+  "section__edit__header": "Edytuj sekcje",
+  "section__preview": "Podgląd Sekcji",
 
   "filepond__direction": "Przeciągnij i upuść plik lub",
   "filepond__browse": "Przeglądaj",
@@ -64,6 +92,7 @@
   "name": "Nazwa",
   "description": "Opis",
   "is__available": "Dostępny",
+  "hours_of_availability": "Godziny dostępności",
   "section": "Sekcja",
   "allergens": "Alergeny",
   "variants": "Wersje",
@@ -75,5 +104,13 @@
   "add": "Dodaj",
 
   "yes": "TAK",
-  "no": "NIE"
+  "no": "NIE",
+
+  "monday": "Poniedziałek",
+  "tuesday": "Wtorek",
+  "wednesday": "Środa",
+  "thursday": "Czwartek",
+  "friday": "Piątek",
+  "saturday": "Sobota",
+  "sunday": "Niedziela"
 }

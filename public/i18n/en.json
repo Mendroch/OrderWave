@@ -5,6 +5,8 @@
   "navigation__newdish": "Dishes",
   "navigation__editdish": "Dishes",
   "navigation__sections": "Sections",
+  "navigation__newsection": "Sections",
+  "navigation__editsection": "Sections",
   "navigation__restaurant": "Restaurant",
   "navigation__lang": "Change language",
   "navigation__en": "English",
@@ -25,8 +27,10 @@
 
   "modal__confirm": "CONFIRM",
   "modal__cancel": "CANCEL",
+
   "modal__order--question": "Confirm the order?",
   "modal__order--description": "The customer will be notified about the completed order",
+
   "modal__dish__delete--question": "Delete dish?",
   "modal__dish__delete--description": "This change is permanently",
   "modal__dish__create--question": "Create dish?",
@@ -34,19 +38,34 @@
   "modal__dish__edit--question": "Edit dish?",
   "modal__dish__edit--description": "The dish will be edited",
 
+  "modal__section__delete--question": "Delete section?",
+  "modal__section__delete--description": "This change is permanently",
+  "modal__section__create--question": "Create section?",
+  "modal__section__create--description": "A new section will be created",
+  "modal__section__edit--question": "Edit section?",
+  "modal__section__edit--description": "The section will be edited",
+
   "notification__order--success": "Order processed",
   "notification__order--error": "Order not processed",
+
   "notification__dish__create--success": "Dish created",
   "notification__dish__create--error": "Dish not created",
   "notification__dish__edit--success": "Dish edited",
   "notification__dish__edit--error": "Dish not edited",
+  "notification__dish__delete--success": "Dish deleted",
+  "notification__dish__delete--error": "Dish undeleted",
+
+  "notification__section__create--success": "Section created",
+  "notification__section__create--error": "Section not created",
+  "notification__section__edit--success": "Section edited",
+  "notification__section__edit--error": "Section not edited",
+  "notification__section__delete--success": "Section deleted",
+  "notification__section__delete--error": "Section undeleted",
 
   "error": "An error has occurred!",
   "loading": "Loading data...",
 
   "dish__noDishes": "Currently, there are no dishes",
-  "dish__delete--success": "Dish deleted",
-  "dish__delete--error": "Dish undeleted",
   "dish__new": "Add new dish",
   "dish__confirm__new": "Confirm new dish",
   "dish__confirm__edit": "Confirm dish edition",
@@ -54,6 +73,15 @@
   "dish__new__header": "New Dish",
   "dish__edit__header": "Edit Dish",
   "dish__preview": "Dish Preview",
+
+  "section__noSections": "Currently, there are no sections",
+  "section__new": "Add new section",
+  "section__confirm__new": "Confirm new section",
+  "section__confirm__edit": "Confirm section edition",
+  "section__back": "Back to Sections",
+  "section__new__header": "New Section",
+  "section__edit__header": "Edit Section",
+  "section__preview": "Section Preview",
 
   "filepond__direction": "Drag & Drop your file or",
   "filepond__browse": "Browse",
@@ -64,6 +92,7 @@
   "name": "Name",
   "description": "Description",
   "is__available": "Is Available",
+  "hours_of_availability": "Hours of availability",
   "section": "Section",
   "allergens": "Allergens",
   "variants": "Variants",
@@ -75,5 +104,13 @@
   "add": "Add",
 
   "yes": "YES",
-  "no": "NO"
+  "no": "NO",
+
+  "monday": "Monday",
+  "tuesday": "Tuesday",
+  "wednesday": "Wednesday",
+  "thursday": "Thursday",
+  "friday": "Friday",
+  "saturday": "Saturday",
+  "sunday": "Sunday"
 }

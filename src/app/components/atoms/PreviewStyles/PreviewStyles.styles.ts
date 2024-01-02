@@ -5,6 +5,9 @@ export const Wrapper = styled(motion.div)`
   position: fixed;
   bottom: -800px;
   left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 100vw;
   max-height: min(800px, 80%);
   background: ${({ theme }) => theme.colors.white};
@@ -34,8 +37,10 @@ export const Button = styled.button`
 export const Container = styled.div`
   padding: 21px;
   margin-top: 9px;
+  max-width: 858px;
+  width: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  grid-template-columns: 1fr 1fr;
   @media (max-width: 542px) {
     grid-template-columns: 1fr;
   }
@@ -69,5 +74,23 @@ export const Variants = styled.div`
 
   p:not(:last-of-type) {
     border-bottom: 1px solid ${({ theme }) => theme.colors.semiLightGray};
+  }
+`;
+
+export const HoursWrapper = styled.div`
+  padding: 8px 0;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.semiLightGray};
+`;
+
+export const Hour = styled.div`
+  display: flex;
+  justify-content: space-between;
+
+  &:first-of-type {
+    margin-top: 19px;
+  }
+
+  &:not(:last-of-type) {
+    margin-bottom: 10px;
   }
 `;
