@@ -83,6 +83,7 @@ export const HoursWrapper = styled.div`
 `;
 
 export const Hour = styled.div`
+  margin-left: 21px;
   display: flex;
   justify-content: space-between;
 

@@ -20,7 +20,7 @@ export const sectionsApi = createApi({
       query: (id) => `/${id}`,
       providesTags: ["Section"],
     }),
-    createSection: build.mutation<{ success: boolean; id: string }, string>({
+    createSection: build.mutation<{ success: boolean; id: string }, ISection>({
       query(data) {
         return {
           url: "/",

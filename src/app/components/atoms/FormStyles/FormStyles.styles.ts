@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-  margin: 60px 0 91px 0;
+  padding: 60px 0 91px 0;
+  min-height: 100vh;
   background: ${({ theme }) => theme.colors.white};
 `;
 
@@ -84,4 +85,22 @@ export const InputSubmit = styled.input`
   border: none;
   background: rgba(0, 0, 0, 0);
   cursor: pointer;
+`;
+
+export const Hours = styled.div`
+  display: flex;
+  justify-content: space-between;
+
+  &:not(:last-of-type) {
+    margin: 0 0 16px 21px;
+  }
+
+  &:first-of-type {
+    margin-top: 19px;
+  }
+
+  > div {
+    display: flex;
+    column-gap: 4px;
+  }
 `;
