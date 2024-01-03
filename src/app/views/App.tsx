@@ -13,6 +13,7 @@ import NewDish from "./NewDish/NewDish";
 import EditDish from "./EditDish/EditDish";
 import Sections from "./Sections/Sections";
 import NewSection from "./NewSection/NewSection";
+import EditSection from "./EditSection/EditSection";
 
 const App = () => {
   return (
@@ -38,6 +39,7 @@ const App = () => {
                 <Route path="editdish" element={<EditDish />} />
                 <Route path="sections" element={<Sections />} />
                 <Route path="newsection" element={<NewSection />} />
+                <Route path="editsection" element={<EditSection />} />
                 <Route path="restaurant" element={<h1>Restaurant</h1>} />
                 <Route path="*" element={<h1>404</h1>} />
               </Route>
