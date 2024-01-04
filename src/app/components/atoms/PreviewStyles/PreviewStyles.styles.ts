@@ -86,6 +86,7 @@ export const Hour = styled.div`
   margin-left: 21px;
   display: flex;
   justify-content: space-between;
+  column-gap: 30px;
 
   &:first-of-type {
     margin-top: 19px;

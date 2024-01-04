@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import ListItem from "../../components/molecules/ListItem/ListItem";
-import { Wrapper } from "./Sections.styles";
+import { Wrapper } from "../../components/atoms/Wrapper/Wrapper.styles";
 import { useDeleteSectionMutation, useGetSectionsQuery } from "../../features/section-slice";
 import { EmptyInfo } from "../../components/atoms/EmptyInfo/EmptyInfo.styles";
 import Notification from "../../components/molecules/Notification/Notification";

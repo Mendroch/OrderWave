@@ -14,6 +14,7 @@ import EditDish from "./EditDish/EditDish";
 import Sections from "./Sections/Sections";
 import NewSection from "./NewSection/NewSection";
 import EditSection from "./EditSection/EditSection";
+import Restaurant from "./Restaurant/Restaurant";
 
 const App = () => {
   return (
@@ -40,7 +41,7 @@ const App = () => {
                 <Route path="sections" element={<Sections />} />
                 <Route path="newsection" element={<NewSection />} />
                 <Route path="editsection" element={<EditSection />} />
-                <Route path="restaurant" element={<h1>Restaurant</h1>} />
+                <Route path="restaurant" element={<Restaurant />} />
                 <Route path="*" element={<h1>404</h1>} />
               </Route>
               <Route path="*" element={<Navigate to="/" />} />

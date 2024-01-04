@@ -3,8 +3,8 @@ import mongoose, { Schema, Document } from "mongoose";
 interface IRestaurant extends Document {
   name: string;
   background: Buffer;
-  backgroundType: String;
-  openDays: Boolean[];
+  backgroundType: string;
+  openDays: boolean[];
   openingHours: Array<{
     start: string;
     end: string;
