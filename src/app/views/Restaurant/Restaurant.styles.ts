@@ -1,13 +1,14 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-  margin: 60px 0 91px 0;
-  padding: 21px;
+  padding: 60px 0 91px 0;
+  min-height: 100vh;
   background: ${({ theme }) => theme.colors.white};
 `;
 
 export const Container = styled.div`
   margin: 0 auto;
+  padding: 21px;
   max-width: 900px;
 `;
 

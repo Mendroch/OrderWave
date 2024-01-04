@@ -104,3 +104,13 @@ export const Hours = styled.div`
     column-gap: 4px;
   }
 `;
+
+export const SwitchWrapper = styled(Hours).attrs({ as: "div" })`
+  &:not(:last-of-type) {
+    margin: 0 0 9px 21px;
+  }
+
+  &:first-of-type {
+    margin-top: 19px;
+  }
+`;

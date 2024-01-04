@@ -8,6 +8,7 @@
   "navigation__newsection": "Sections",
   "navigation__editsection": "Sections",
   "navigation__restaurant": "Restaurant",
+  "navigation__editrestaurant": "Restaurant",
   "navigation__lang": "Change language",
   "navigation__en": "English",
   "navigation__pl": "Polish",
@@ -45,6 +46,9 @@
   "modal__section__edit--question": "Edit section?",
   "modal__section__edit--description": "The section will be edited",
 
+  "modal__restaurant__edit--question": "Edit restaurant?",
+  "modal__restaurant__edit--description": "The restaurant will be edited",
+
   "notification__order--success": "Order processed",
   "notification__order--error": "Order not processed",
 
@@ -61,6 +65,9 @@
   "notification__section__edit--error": "Section not edited",
   "notification__section__delete--success": "Section deleted",
   "notification__section__delete--error": "Section undeleted",
+
+  "notification__restaurant__edit--success": "Restaurant edited",
+  "notification__restaurant__edit--error": "Restaurant not edited",
 
   "error": "An error has occurred!",
   "loading": "Loading data...",
@@ -85,6 +92,9 @@
 
   "restaurant__noRestaurant": "Currently, there are no restaurant",
   "restaurant__edit": "Edit Restaurant",
+  "restaurant__confirm__edit": "Confirm restaurant edition",
+  "restaurant__back": "Back to Restaurant",
+  "restaurant__edit__header": "Edit Restaurant",
 
   "filepond__direction": "Drag & Drop your file or",
   "filepond__browse": "Browse",
@@ -97,6 +107,7 @@
   "is__available": "Is Available",
   "hours_of_availability": "Hours of availability",
   "opening_hours": "Opening hours",
+  "open_days": "Open days",
   "section": "Section",
   "allergens": "Allergens",
   "variants": "Variants",

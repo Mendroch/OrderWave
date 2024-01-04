@@ -90,7 +90,13 @@ const NewSection = () => {
             {daysOfWeek.map((day, index) => (
               <Hours key={index}>
                 <p>{day}</p>
-                <TimeInput register={register} setValue={setValue} watch={watch} index={index} />
+                <TimeInput
+                  register={register}
+                  setValue={setValue}
+                  watch={watch}
+                  index={index}
+                  fieldName={Fields.HoursOfAvailability}
+                />
               </Hours>
             ))}
             <Margin />

@@ -4,7 +4,6 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { ActionStripWrapper } from "../../components/atoms/ActionStripWrapper/ActionStripWrapper.styles";
 import Button from "../../components/atoms/Button/Button";
 import {
-  Availability,
   Container,
   Header,
   Hours,
@@ -12,6 +11,8 @@ import {
   InputSubmit,
   Label,
   Margin,
+  SelectInput,
+  SwitchWrapper,
   Wrapper,
 } from "../../components/atoms/FormStyles/FormStyles.styles";
 import BackStrip from "../../components/atoms/BackStrip/BackStrip";
@@ -22,20 +23,21 @@ import DecisionModal from "../../components/molecules/DecisionModal/DecisionModa
 import useModal from "../../components/organisms/Modal/useModal";
 import Notification from "../../components/molecules/Notification/Notification";
 import { useLocation, useNavigate } from "react-router-dom";
-import { ISection } from "../../types/Sections";
-import { useUpdateSectionMutation } from "../../features/section-slice";
 import TimeInput from "../../components/molecules/TimeInput/TimeInput";
+import { IRestaurant } from "../../types/Restaurants";
+import { useUpdateRestaurantsMutation } from "../../features/restaurant-slice";
+import FileInput from "../../components/molecules/FileInput/FileInput";
 
-const EditSection = () => {
+const EditRestaurant = () => {
   const { t } = useTranslation();
-  const { register, setValue, watch, handleSubmit } = useForm<ISection>();
+  const { register, setValue, watch, handleSubmit } = useForm<IRestaurant>();
   const [data, setData] = useState({});
-  const [updateSection] = useUpdateSectionMutation();
+  const [updateRestaurant] = useUpdateRestaurantsMutation();
   const { isOpen, handleOpenModal, handleCloseModal } = useModal();
   const [isNotificationOpen, setIsNotificationOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
-  const [oldData, setOldData] = useState<ISection>();
+  const [oldData, setOldData] = useState<IRestaurant>();
 
   const daysOfWeek = [
     t("monday"),
@@ -48,17 +50,17 @@ const EditSection = () => {
   ];
 
   useEffect(() => {
-    if (location.state.sectionData) setOldData(location.state.sectionData);
-    else navigate("/owner/sections");
+    if (location.state.restaurantData) setOldData(location.state.restaurantData);
+    else navigate("/owner/restaurant");
     // eslint-disable-next-line
   }, [location]);
 
-  const handleEditSection = async () => {
+  const handleEditRestaurant = async () => {
     if (oldData) {
       try {
-        await updateSection({ id: oldData._id, data }).unwrap();
-        navigate("/owner/sections", {
-          state: { notification: t("notification__section__edit--success") },
+        await updateRestaurant({ id: oldData._id, data }).unwrap();
+        navigate("/owner/restaurant", {
+          state: { notification: t("notification__restaurant__edit--success") },
         });
       } catch {
         setIsNotificationOpen(true);
@@ -66,15 +68,16 @@ const EditSection = () => {
     }
   };
 
-  const onSubmit: SubmitHandler<ISection> = (data) => {
+  const onSubmit: SubmitHandler<IRestaurant> = (data) => {
+    console.log(data);
     setData(data);
     handleOpenModal();
   };
 
   return (
     <Wrapper>
-      <BackStrip title={t("section__back")} />
-      <Header>{t("section__edit__header")}</Header>
+      <BackStrip title={t("restaurant__back")} />
+      <Header>{t("restaurant__edit__header")}</Header>
       {oldData && (
         <Container>
           <form onSubmit={handleSubmit(onSubmit)}>
@@ -92,18 +95,38 @@ const EditSection = () => {
               <Margin />
             </div>
             <div>
-              <Availability>
-                <Label>{t("is__available")}</Label>
-                <Switch
-                  register={{ ...register(Fields.IsAvailable) }}
-                  defaultValue={oldData?.isAvailable !== undefined ? oldData.isAvailable : true}
-                />
-              </Availability>
+              <Label>
+                {t("background")}
+                <span>*</span>
+                <p></p>
+              </Label>
+              <FileInput
+                setImage={(data) => {
+                  setValue(Fields.Background, data);
+                }}
+                defaultValue={(oldData?.background ? oldData.background : "") as string}
+              />
               <Margin />
             </div>
             <div>
               <Label>
-                {t("hours_of_availability")}
+                {t("open_days")}
+                <span>*</span>
+              </Label>
+              {daysOfWeek.map((day, index) => (
+                <SwitchWrapper>
+                  <Label>{day}</Label>
+                  <Switch
+                    register={{ ...register(`${Fields.OpenDays}[${index}]`) }}
+                    defaultValue={oldData?.openDays !== undefined ? oldData.openDays[index] : true}
+                  />
+                </SwitchWrapper>
+              ))}
+              <Margin />
+            </div>
+            <div>
+              <Label>
+                {t("opening_hours")}
                 <span>*</span>
               </Label>
               {daysOfWeek.map((day, index) => (
@@ -114,17 +137,33 @@ const EditSection = () => {
                     setValue={setValue}
                     watch={watch}
                     index={index}
-                    fieldName={Fields.HoursOfAvailability}
-                    defaultValue={oldData?.hoursOfAvailability[index]}
+                    fieldName={Fields.OpeningHours}
+                    defaultValue={oldData?.openingHours[index]}
                   />
                 </Hours>
               ))}
               <Margin />
             </div>
+            <div>
+              <Label>
+                {t("currency")}
+                <span>*</span>
+              </Label>
+              <SelectInput
+                {...register(Fields.Currency)}
+                defaultValue={oldData?.currency ? oldData.currency : ""}
+                required
+              >
+                <option value="PLN">PLN</option>
+                <option value="EUR">EUR</option>
+                <option value="USD">USD</option>
+              </SelectInput>
+              <Margin />
+            </div>
             <ActionStripWrapper>
               <Button onClick={() => {}}>
                 <InputSubmit type="submit" value="" />
-                {t("section__confirm__edit")}
+                {t("restaurant__confirm__edit")}
               </Button>
             </ActionStripWrapper>
           </form>
@@ -135,19 +174,19 @@ const EditSection = () => {
         toggle={() => setIsNotificationOpen(false)}
         props={{
           isSuccess: false,
-          notification: t("notification__section__edit--error"),
+          notification: t("notification__restaurant__edit--error"),
         }}
       />
       <Modal isOpen={isOpen}>
         <DecisionModal
-          question={t("modal__section__edit--question")}
-          description={t("modal__section__edit--description")}
+          question={t("modal__restaurant__edit--question")}
+          description={t("modal__restaurant__edit--description")}
           handleClose={handleCloseModal}
-          onConfirm={handleEditSection}
+          onConfirm={handleEditRestaurant}
         />
       </Modal>
     </Wrapper>
   );
 };
 
-export default EditSection;
+export default EditRestaurant;

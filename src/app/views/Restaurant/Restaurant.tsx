@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { EmptyInfo } from "../../components/atoms/EmptyInfo/EmptyInfo.styles";
 import Notification from "../../components/molecules/Notification/Notification";
 import Button from "../../components/atoms/Button/Button";
-import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { ActionStripWrapper } from "../../components/atoms/ActionStripWrapper/ActionStripWrapper.styles";
 import { useGetRestaurantsQuery } from "../../features/restaurant-slice";
 import { Closed, Container, Wrapper } from "./Restaurant.styles";
@@ -49,6 +49,15 @@ const Restaurant = () => {
     // eslint-disable-next-line
   }, [location]);
 
+  const handleClick = () => {
+    if (currentData)
+      navigate("/owner/editrestaurant", {
+        state: {
+          restaurantData: currentData[0],
+        },
+      });
+  };
+
   if (isError) return <EmptyInfo>{t("error")}</EmptyInfo>;
 
   if (isLoading) return <EmptyInfo>{t("loading")}</EmptyInfo>;
@@ -64,11 +73,7 @@ const Restaurant = () => {
             </ListItem>
             <ListItem>
               <Title>{t("background")}</Title>
-              <img
-                style={{ width: "600px", height: "258px" }}
-                src="https://picsum.photos/600/258"
-                alt="background"
-              />
+              <img src={`${currentData[0].background}`} alt="dish picture" />
             </ListItem>
             <HoursWrapper>
               <Title>{t("opening_hours")}</Title>
@@ -91,9 +96,7 @@ const Restaurant = () => {
               <Text>{currentData[0].currency}</Text>
             </ListItem>
             <ActionStripWrapper>
-              <NavLink to={"/owner/editrestaurant"}>
-                <Button onClick={() => {}}>{t("restaurant__edit")}</Button>
-              </NavLink>
+              <Button onClick={handleClick}>{t("restaurant__edit")}</Button>
             </ActionStripWrapper>
             <Notification
               isOpen={isNotificationOpen}

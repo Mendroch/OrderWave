@@ -1,19 +1,26 @@
 import { useEffect, useState } from "react";
 import { UseFormRegister, UseFormSetValue, UseFormWatch } from "react-hook-form";
-import { ISection } from "../../../types/Sections";
 
 interface TimeInputProps {
-  register: UseFormRegister<ISection>;
-  setValue: UseFormSetValue<ISection>;
-  watch: UseFormWatch<ISection>;
+  register: UseFormRegister<any>;
+  setValue: UseFormSetValue<any>;
+  watch: UseFormWatch<any>;
   index: number;
-  defaultValue: { start: string; end: string; _id: string } | undefined;
+  fieldName: string;
+  defaultValue?: { start: string; end: string; _id: string } | undefined;
 }
 
-const TimeInput = ({ register, setValue, watch, index, defaultValue }: TimeInputProps) => {
+const TimeInput = ({
+  register,
+  setValue,
+  watch,
+  index,
+  fieldName,
+  defaultValue,
+}: TimeInputProps) => {
   const [time, setTime] = useState("");
-  const name1 = `hoursOfAvailability[${index}].start`;
-  const name2 = `hoursOfAvailability[${index}].end`;
+  const name1 = `${fieldName}[${index}].start`;
+  const name2 = `${fieldName}[${index}].end`;
   const watchTime1 = watch(name1);
   const watchTime2 = watch(name2);
 

@@ -8,6 +8,7 @@
   "navigation__newsection": "Sekcje",
   "navigation__editsection": "Sekcje",
   "navigation__restaurant": "Restauracja",
+  "navigation__editrestaurant": "Restauracja",
   "navigation__lang": "Zmień język",
   "navigation__en": "Angielski",
   "navigation__pl": "Polski",
@@ -45,6 +46,9 @@
   "modal__section__edit--question": "Czy edytować sekcje?",
   "modal__section__edit--description": "Edycja sekcji zostanie przeprowadzona",
 
+  "modal__restaurant__edit--question": "Czy edytować restaurant?",
+  "modal__restaurant__edit--description": "Edycja restauracji zostanie przeprowadzona",
+
   "notification__order--success": "Zamówienie zrealizowane",
   "notification__order--error": "Zamówienie nie zrealizowane",
 
@@ -61,6 +65,9 @@
   "notification__section__edit--error": "Edycja nie powiodła się",
   "notification__section__delete--success": "Sekcja została usunięta",
   "notification__section__delete--error": "Sekcja nie została usunięta",
+
+  "notification__restaurant__edit--success": "Edycja restauracji zakończona",
+  "notification__restaurant__edit--error": "Edycja nie powiodła się",
 
   "error": "Wystąpił błąd!",
   "loading": "Ładowanie danych...",
@@ -85,6 +92,9 @@
 
   "restaurant__noRestaurant": "Aktualnie nie ma żadnej restauracji",
   "restaurant__edit": "Edytuj Restauracje",
+  "restaurant__confirm__edit": "Potwierdź edycje restauracji",
+  "restaurant__back": "Powróć do restauracji",
+  "restaurant__edit__header": "Edytuj restauracje",
 
   "filepond__direction": "Przeciągnij i upuść plik lub",
   "filepond__browse": "Przeglądaj",
@@ -97,6 +107,7 @@
   "is__available": "Dostępny",
   "hours_of_availability": "Godziny dostępności",
   "opening_hours": "Godziny otwarcia",
+  "open_days": "Dni otwarte",
   "section": "Sekcja",
   "allergens": "Alergeny",
   "variants": "Wersje",

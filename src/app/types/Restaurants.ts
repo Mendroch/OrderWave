@@ -1,12 +1,13 @@
 export interface IRestaurant {
   [x: string]: any;
   name: string;
-  background: Buffer;
+  background: string;
   backgroundType: string;
   openDays: boolean[];
   openingHours: Array<{
     start: string;
     end: string;
+    _id: string;
   }>;
   currency: string;
   _id: string;

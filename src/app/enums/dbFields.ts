@@ -12,8 +12,13 @@ export enum Fields {
   RemovableIngredients = "removableIngredients",
   Picture = "picture",
   PictureType = "pictureType",
+  Background = "background",
   Price = "price",
   DishesList = "dishesList",
   DeliveryMethod = "deliveryMethod",
   TableNumber = "tableNumber",
+  HoursOfAvailability = "hoursOfAvailability",
+  OpeningHours = "openingHours",
+  OpenDays = "openDays",
+  Currency = "currency",
 }
