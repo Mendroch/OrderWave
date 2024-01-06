@@ -27,6 +27,8 @@ import DecisionModal from "../../components/molecules/DecisionModal/DecisionModa
 import useModal from "../../components/organisms/Modal/useModal";
 import Notification from "../../components/molecules/Notification/Notification";
 import { useNavigate } from "react-router-dom";
+import { useGetSectionsQuery } from "../../features/section-slice";
+import { ISection } from "../../types/Sections";
 
 const reducer = (state: any, action: any) => {
   return {
@@ -41,19 +43,14 @@ const NewDish = () => {
   const [data, setData] = useState({});
   const [customData, dispatch] = useReducer(reducer, {});
   const [createDish] = useCreateDishMutation();
+  const { currentData: sectionsData } = useGetSectionsQuery("");
   const { isOpen, handleOpenModal, handleCloseModal } = useModal();
   const [isNotificationOpen, setIsNotificationOpen] = useState(false);
   const navigate = useNavigate();
 
   const handleCreateDish = async () => {
-    const mockedData = {
-      ...data,
-      ...customData,
-      sectionId: "650c5e57dcce0bcfca188385",
-    };
-
     try {
-      await createDish(mockedData).unwrap();
+      await createDish({ ...data, ...customData }).unwrap();
       navigate("/owner/dishes", {
         state: { notification: t("notification__dish__create--success") },
       });
@@ -71,111 +68,115 @@ const NewDish = () => {
     <Wrapper>
       <BackStrip title={t("dish__back")} />
       <Header>{t("dish__new__header")}</Header>
-      <Container>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <div>
-            <Label>
-              {t("name")}
-              <span>*</span>
-            </Label>
-            <Input placeholder={t("name")} {...register(Fields.Name)} required />
-            <Margin />
-          </div>
-          <div>
-            <Label>{t("description")}</Label>
-            <TextArea placeholder={t("description")} {...register(Fields.Description)} rows={4} />
-            <Margin />
-          </div>
-          <div>
-            <Availability>
-              <Label>{t("is__available")}</Label>
-              <Switch register={{ ...register(Fields.IsAvailable) }} />
-            </Availability>
-            <Margin />
-          </div>
-          <div>
-            <Label>
-              {t("section")}
-              <span>*</span>
-            </Label>
-            <SelectInput {...register(Fields.Section)} required>
-              <option value="pizza">pizza</option>
-              <option value="burger">burger</option>
-              <option value="pasta">pasta</option>
-            </SelectInput>
-            <Margin />
-          </div>
-          <div>
-            <ListInput
-              inputName={t("allergens")}
-              cb={(data) => {
-                dispatch({ type: Fields.Allergens, payload: data });
-              }}
-            />
-            <Margin />
-          </div>
-          <div>
-            <ListInput
-              inputName={t("variants")}
-              withPrice={true}
-              cb={(data) => {
-                dispatch({ type: Fields.Variants, payload: data });
-              }}
-            />
-            <Margin />
-          </div>
-          <div>
-            <ListInput
-              inputName={t("extra__ingredients")}
-              withPrice={true}
-              cb={(data) => {
-                dispatch({ type: Fields.ExtraIngredients, payload: data });
-              }}
-            />
-            <Margin />
-          </div>
-          <div>
-            <ListInput
-              inputName={t("removable__ingredients")}
-              cb={(data) => {
-                dispatch({ type: Fields.RemovableIngredients, payload: data });
-              }}
-            />
-            <Margin />
-          </div>
-          <div>
-            <Label>
-              {t("picture")}
-              <p></p>
-            </Label>
-            <FileInput
-              setImage={(data) => {
-                dispatch({ type: Fields.Picture, payload: data });
-              }}
-            />
-            <Margin />
-          </div>
-          <div>
-            <Label>
-              {t("price")}
-              <span>*</span>
-            </Label>
-            <Input
-              type="number"
-              min={0}
-              placeholder={t("price")}
-              {...register(Fields.Price)}
-              required
-            />
-          </div>
-          <ActionStripWrapper>
-            <Button onClick={() => {}}>
-              <InputSubmit type="submit" value="" />
-              {t("dish__confirm__new")}
-            </Button>
-          </ActionStripWrapper>
-        </form>
-      </Container>
+      {sectionsData && (
+        <Container>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <div>
+              <Label>
+                {t("name")}
+                <span>*</span>
+              </Label>
+              <Input placeholder={t("name")} {...register(Fields.Name)} required />
+              <Margin />
+            </div>
+            <div>
+              <Label>{t("description")}</Label>
+              <TextArea placeholder={t("description")} {...register(Fields.Description)} rows={4} />
+              <Margin />
+            </div>
+            <div>
+              <Availability>
+                <Label>{t("is__available")}</Label>
+                <Switch register={{ ...register(Fields.IsAvailable) }} />
+              </Availability>
+              <Margin />
+            </div>
+            <div>
+              <Label>
+                {t("section")}
+                <span>*</span>
+              </Label>
+              <SelectInput {...register(Fields.SectionId)} required>
+                {sectionsData.map((elem: ISection, index: number) => (
+                  <option value={elem._id} key={index}>
+                    {elem.name}
+                  </option>
+                ))}
+              </SelectInput>
+              <Margin />
+            </div>
+            <div>
+              <ListInput
+                inputName={t("allergens")}
+                cb={(data) => {
+                  dispatch({ type: Fields.Allergens, payload: data });
+                }}
+              />
+              <Margin />
+            </div>
+            <div>
+              <ListInput
+                inputName={t("variants")}
+                withPrice={true}
+                cb={(data) => {
+                  dispatch({ type: Fields.Variants, payload: data });
+                }}
+              />
+              <Margin />
+            </div>
+            <div>
+              <ListInput
+                inputName={t("extra__ingredients")}
+                withPrice={true}
+                cb={(data) => {
+                  dispatch({ type: Fields.ExtraIngredients, payload: data });
+                }}
+              />
+              <Margin />
+            </div>
+            <div>
+              <ListInput
+                inputName={t("removable__ingredients")}
+                cb={(data) => {
+                  dispatch({ type: Fields.RemovableIngredients, payload: data });
+                }}
+              />
+              <Margin />
+            </div>
+            <div>
+              <Label>
+                {t("picture")}
+                <p></p>
+              </Label>
+              <FileInput
+                setImage={(data) => {
+                  dispatch({ type: Fields.Picture, payload: data });
+                }}
+              />
+              <Margin />
+            </div>
+            <div>
+              <Label>
+                {t("price")}
+                <span>*</span>
+              </Label>
+              <Input
+                type="number"
+                min={0}
+                placeholder={t("price")}
+                {...register(Fields.Price)}
+                required
+              />
+            </div>
+            <ActionStripWrapper>
+              <Button onClick={() => {}}>
+                <InputSubmit type="submit" value="" />
+                {t("dish__confirm__new")}
+              </Button>
+            </ActionStripWrapper>
+          </form>
+        </Container>
+      )}
       <Notification
         isOpen={isNotificationOpen}
         toggle={() => setIsNotificationOpen(false)}

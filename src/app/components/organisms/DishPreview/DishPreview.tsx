@@ -12,6 +12,8 @@ import {
 import close from "../../../assets/icons/close.png";
 import { IDish } from "../../../types/Dishes";
 import Shadow from "../../molecules/Shadow/Shadow";
+import { useGetSectionsQuery } from "../../../features/section-slice";
+import { ISection } from "../../../types/Sections";
 
 interface DishPreviewProps {
   isOpen: boolean;
@@ -21,6 +23,7 @@ interface DishPreviewProps {
 
 const DishPreview = ({ isOpen, toggle, dish }: DishPreviewProps) => {
   const { t } = useTranslation();
+  const { currentData: sectionsData } = useGetSectionsQuery("");
 
   return (
     <>
@@ -45,10 +48,14 @@ const DishPreview = ({ isOpen, toggle, dish }: DishPreviewProps) => {
               <Title>{t("is__available")}</Title>
               <Text>{dish.isAvailable ? t("yes") : t("no")}</Text>
             </ListItem>
-            <ListItem>
-              <Title>{t("section")}</Title>
-              <Text>{dish.section}</Text>
-            </ListItem>
+            {sectionsData && (
+              <ListItem>
+                <Title>{t("section")}</Title>
+                <Text>
+                  {sectionsData.find((elem: ISection) => elem._id === dish.sectionId).name}
+                </Text>
+              </ListItem>
+            )}
             {dish.allergens && (
               <ListItem>
                 <Title>{t("allergens")}</Title>

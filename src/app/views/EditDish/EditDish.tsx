@@ -1,6 +1,7 @@
 import { useState, useReducer, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { useLocation, useNavigate } from "react-router-dom";
 import { ActionStripWrapper } from "../../components/atoms/ActionStripWrapper/ActionStripWrapper.styles";
 import Button from "../../components/atoms/Button/Button";
 import {
@@ -26,7 +27,8 @@ import Modal from "../../components/organisms/Modal/Modal";
 import DecisionModal from "../../components/molecules/DecisionModal/DecisionModal";
 import useModal from "../../components/organisms/Modal/useModal";
 import Notification from "../../components/molecules/Notification/Notification";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useGetSectionsQuery } from "../../features/section-slice";
+import { ISection } from "../../types/Sections";
 
 const reducer = (state: any, action: any) => {
   return {
@@ -41,6 +43,7 @@ const EditDish = () => {
   const [data, setData] = useState({});
   const [customData, dispatch] = useReducer(reducer, {});
   const [updateDish] = useUpdateDishMutation();
+  const { currentData: sectionsData } = useGetSectionsQuery("");
   const { isOpen, handleOpenModal, handleCloseModal } = useModal();
   const [isNotificationOpen, setIsNotificationOpen] = useState(false);
   const location = useLocation();
@@ -55,14 +58,8 @@ const EditDish = () => {
 
   const handleEditDish = async () => {
     if (oldData) {
-      const mockedData = {
-        ...data,
-        ...customData,
-        sectionId: "650c5e57dcce0bcfca188385",
-      };
-
       try {
-        await updateDish({ id: oldData._id, data: mockedData }).unwrap();
+        await updateDish({ id: oldData._id, data: { ...data, ...customData } }).unwrap();
         navigate("/owner/dishes", {
           state: { notification: t("notification__dish__edit--success") },
         });
@@ -81,7 +78,7 @@ const EditDish = () => {
     <Wrapper>
       <BackStrip title={t("dish__back")} />
       <Header>{t("dish__edit__header")}</Header>
-      {oldData && (
+      {oldData && sectionsData && (
         <Container>
           <form onSubmit={handleSubmit(onSubmit)}>
             <div>
@@ -123,13 +120,15 @@ const EditDish = () => {
                 <span>*</span>
               </Label>
               <SelectInput
-                {...register(Fields.Section)}
-                defaultValue={oldData?.section ? oldData.section : ""}
+                {...register(Fields.SectionId)}
+                defaultValue={oldData?.sectionId ? oldData.sectionId : ""}
                 required
               >
-                <option value="pizza">pizza</option>
-                <option value="burger">burger</option>
-                <option value="pasta">pasta</option>
+                {sectionsData.map((elem: ISection, index: number) => (
+                  <option value={elem._id} key={index}>
+                    {elem.name}
+                  </option>
+                ))}
               </SelectInput>
               <Margin />
             </div>

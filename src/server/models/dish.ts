@@ -4,7 +4,6 @@ interface IDish extends Document {
   name: string;
   description?: string;
   isAvailable: boolean;
-  section: string;
   sectionId: mongoose.Schema.Types.ObjectId;
   allergens?: string[];
   variants?: [
@@ -28,7 +27,6 @@ const dishSchema = new Schema<IDish>({
   name: { type: String, required: true },
   description: String,
   isAvailable: { type: Boolean, required: true },
-  section: { type: String, required: true },
   sectionId: { type: mongoose.Schema.Types.ObjectId, required: true, ref: "Section" },
   allergens: [String],
   variants: [

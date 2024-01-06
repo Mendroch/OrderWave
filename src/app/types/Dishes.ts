@@ -3,7 +3,7 @@ export interface IDish {
   name: string;
   description?: string;
   isAvailable: boolean;
-  section: string;
+  sectionId: string;
   allergens?: string[];
   variants?: [
     {
