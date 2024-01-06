@@ -3,7 +3,6 @@ import mongoose, { Schema, Document } from "mongoose";
 interface IRestaurant extends Document {
   name: string;
   background: string;
-  backgroundType: string;
   openDays: boolean[];
   openingHours: Array<{
     start: string;
@@ -15,7 +14,6 @@ interface IRestaurant extends Document {
 const restaurantSchema = new Schema<IRestaurant>({
   name: { type: String, required: true },
   background: { type: String, required: true },
-  backgroundType: { type: String, required: true },
   openDays: { type: [Boolean], required: true },
   openingHours: [
     {
@@ -24,11 +22,5 @@ const restaurantSchema = new Schema<IRestaurant>({
     },
   ],
 });
-
-// restaurantSchema.virtual("picturePath").get(function () {
-//   if (this.background != null && this.backgroundType != null) {
-//     return `data:${this.backgroundType};charset=utf-8;base64,${this.background.toString("base64")}`;
-//   }
-// });
 
 export const RestaurantModel = mongoose.model<IRestaurant>("Restaurant", restaurantSchema);

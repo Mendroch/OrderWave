@@ -21,7 +21,6 @@ export interface IDish {
   ];
   removableIngredients?: string[];
   picture?: Buffer;
-  pictureType: string;
   price: number;
   _id: string;
 }

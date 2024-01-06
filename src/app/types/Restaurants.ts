@@ -2,7 +2,6 @@ export interface IRestaurant {
   [x: string]: any;
   name: string;
   background: string;
-  backgroundType: string;
   openDays: boolean[];
   openingHours: Array<{
     start: string;

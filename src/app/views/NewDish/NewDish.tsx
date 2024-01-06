@@ -49,7 +49,6 @@ const NewDish = () => {
     const mockedData = {
       ...data,
       ...customData,
-      pictureType: customData.picture ? customData.picture.match(/data:(\w+\/\w+);base64/)[1] : "",
       sectionId: "650c5e57dcce0bcfca188385",
     };
 

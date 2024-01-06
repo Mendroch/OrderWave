@@ -21,7 +21,6 @@ interface IDish extends Document {
   ];
   removableIngredients?: string[];
   picture?: string;
-  pictureType: string;
   price: number;
 }
 
@@ -46,14 +45,7 @@ const dishSchema = new Schema<IDish>({
   ],
   removableIngredients: [String],
   picture: String,
-  pictureType: String,
   price: { type: Number, required: true },
 });
-
-// dishSchema.virtual("picturePath").get(function () {
-//   if (this.picture != null && this.pictureType != null) {
-//     return `data:${this.pictureType};charset=utf-8;base64,${this.picture.toString("base64")}`;
-//   }
-// });
 
 export const DishModel = mongoose.model<IDish>("Dish", dishSchema);

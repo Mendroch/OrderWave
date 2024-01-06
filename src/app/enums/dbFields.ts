@@ -11,7 +11,6 @@ export enum Fields {
   ExtraIngredients = "extraIngredients",
   RemovableIngredients = "removableIngredients",
   Picture = "picture",
-  PictureType = "pictureType",
   Background = "background",
   Price = "price",
   DishesList = "dishesList",
