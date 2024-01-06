@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { Model } from "mongoose";
+import { RestaurantModel } from "./models/restaurant";
 
 interface ControllerOptions {
   model: Model<any>;
@@ -67,4 +68,14 @@ export const deleteController = ({ model }: ControllerOptions) => {
       console.error("Error deleting resource", error);
     }
   };
+};
+
+export const getCurrencyController = async (_: Request, res: Response) => {
+  try {
+    const data = await RestaurantModel.find();
+    res.status(200).json(data[0].currency);
+  } catch (error) {
+    console.error("An error occurred while retrieving data", error);
+    res.status(500).json({ error: "An error occurred while processing the request" });
+  }
 };

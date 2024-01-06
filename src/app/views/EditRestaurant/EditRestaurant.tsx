@@ -62,7 +62,6 @@ const EditRestaurant = () => {
   };
 
   const onSubmit: SubmitHandler<IRestaurant> = (data) => {
-    console.log(data);
     setData(data);
     handleOpenModal();
   };

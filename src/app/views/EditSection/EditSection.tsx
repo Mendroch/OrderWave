@@ -40,7 +40,7 @@ const EditSection = () => {
   const daysOfWeek = useDaysOfWeek();
 
   useEffect(() => {
-    if (location.state.sectionData) setOldData(location.state.sectionData);
+    if (location.state?.sectionData) setOldData(location.state.sectionData);
     else navigate("/owner/sections");
     // eslint-disable-next-line
   }, [location]);

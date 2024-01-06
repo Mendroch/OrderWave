@@ -29,10 +29,6 @@ const Restaurant = () => {
   const daysOfWeek = useDaysOfWeek();
 
   useEffect(() => {
-    console.log(currentData);
-  }, [currentData]);
-
-  useEffect(() => {
     if (location.state && location.state.notification) {
       setNotificationProps({ isSuccess: true, notification: location.state.notification });
       setIsNotificationOpen(true);

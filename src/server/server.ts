@@ -3,6 +3,7 @@ import express, { Application } from "express";
 import cors from "cors";
 import "./connect-db";
 import { dishesRouter, sectionsRouter, ordersRouter, restaurantRouter } from "./routers";
+import { getCurrencyController } from "./controllers";
 
 const app: Application = express();
 const port: string | number = process.env.PORT || 3000;
@@ -17,6 +18,7 @@ app.use("/dishes", dishesRouter);
 app.use("/orders", ordersRouter);
 app.use("/sections", sectionsRouter);
 app.use("/restaurant", restaurantRouter);
+app.get("/currency", getCurrencyController);
 
 app.listen(port, () => {
   console.log(`Server is listening on port: ${port}`);

@@ -21,6 +21,7 @@ const restaurantSchema = new Schema<IRestaurant>({
       end: { type: String, required: true },
     },
   ],
+  currency: { type: String, required: true },
 });
 
 export const RestaurantModel = mongoose.model<IRestaurant>("Restaurant", restaurantSchema);

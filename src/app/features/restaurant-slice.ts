@@ -4,7 +4,7 @@ import { IRestaurant } from "../types/Restaurants";
 export const restaurantsApi = createApi({
   reducerPath: "restaurantsApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://127.0.0.1:3000/restaurant",
+    baseUrl: "http://127.0.0.1:3000",
     prepareHeaders: (headers) => {
       headers.set("Content-Type", "application/json");
       return headers;
@@ -13,13 +13,17 @@ export const restaurantsApi = createApi({
   tagTypes: ["Restaurants"],
   endpoints: (build) => ({
     getRestaurants: build.query<IRestaurant, string>({
-      query: () => "/",
+      query: () => "/restaurant",
+      providesTags: ["Restaurants"],
+    }),
+    getCurrencyController: build.query<string, string>({
+      query: () => "/currency",
       providesTags: ["Restaurants"],
     }),
     updateRestaurants: build.mutation<{ success: boolean; id: string }, { id: string; data: any }>({
       query({ id, data }) {
         return {
-          url: `/${id}`,
+          url: `/restaurant/${id}`,
           method: "PUT",
           body: data,
         };
