@@ -16,7 +16,7 @@ export const restaurantsApi = createApi({
       query: () => "/restaurant",
       providesTags: ["Restaurants"],
     }),
-    getCurrencyController: build.query<string, string>({
+    getCurrency: build.query<string, string>({
       query: () => "/currency",
       providesTags: ["Restaurants"],
     }),
@@ -33,4 +33,5 @@ export const restaurantsApi = createApi({
   }),
 });
 
-export const { useGetRestaurantsQuery, useUpdateRestaurantsMutation } = restaurantsApi;
+export const { useGetRestaurantsQuery, useGetCurrencyQuery, useUpdateRestaurantsMutation } =
+  restaurantsApi;

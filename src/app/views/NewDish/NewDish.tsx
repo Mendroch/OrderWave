@@ -29,6 +29,7 @@ import Notification from "../../components/molecules/Notification/Notification";
 import { useNavigate } from "react-router-dom";
 import { useGetSectionsQuery } from "../../features/section-slice";
 import { ISection } from "../../types/Sections";
+import { useGetCurrencyQuery } from "../../features/restaurant-slice";
 
 const reducer = (state: any, action: any) => {
   return {
@@ -44,6 +45,7 @@ const NewDish = () => {
   const [customData, dispatch] = useReducer(reducer, {});
   const [createDish] = useCreateDishMutation();
   const { currentData: sectionsData } = useGetSectionsQuery("");
+  const { currentData: currency } = useGetCurrencyQuery("");
   const { isOpen, handleOpenModal, handleCloseModal } = useModal();
   const [isNotificationOpen, setIsNotificationOpen] = useState(false);
   const navigate = useNavigate();
@@ -68,7 +70,7 @@ const NewDish = () => {
     <Wrapper>
       <BackStrip title={t("dish__back")} />
       <Header>{t("dish__new__header")}</Header>
-      {sectionsData && (
+      {sectionsData && currency && (
         <Container>
           <form onSubmit={handleSubmit(onSubmit)}>
             <div>
@@ -121,6 +123,7 @@ const NewDish = () => {
                 cb={(data) => {
                   dispatch({ type: Fields.Variants, payload: data });
                 }}
+                currency={currency}
               />
               <Margin />
             </div>
@@ -131,6 +134,7 @@ const NewDish = () => {
                 cb={(data) => {
                   dispatch({ type: Fields.ExtraIngredients, payload: data });
                 }}
+                currency={currency}
               />
               <Margin />
             </div>
@@ -157,7 +161,7 @@ const NewDish = () => {
             </div>
             <div>
               <Label>
-                {t("price")}
+                {t("price")} {currency}
                 <span>*</span>
               </Label>
               <Input

@@ -14,6 +14,7 @@ import { IDish } from "../../../types/Dishes";
 import Shadow from "../../molecules/Shadow/Shadow";
 import { useGetSectionsQuery } from "../../../features/section-slice";
 import { ISection } from "../../../types/Sections";
+import { useGetCurrencyQuery } from "../../../features/restaurant-slice";
 
 interface DishPreviewProps {
   isOpen: boolean;
@@ -24,6 +25,7 @@ interface DishPreviewProps {
 const DishPreview = ({ isOpen, toggle, dish }: DishPreviewProps) => {
   const { t } = useTranslation();
   const { currentData: sectionsData } = useGetSectionsQuery("");
+  const { currentData: currency } = useGetCurrencyQuery("");
 
   return (
     <>
@@ -106,7 +108,9 @@ const DishPreview = ({ isOpen, toggle, dish }: DishPreviewProps) => {
             )}
             <ListItem>
               <Title>{t("price")}</Title>
-              <Text>{dish.price} PLN</Text>
+              <Text>
+                {dish.price} {currency}
+              </Text>
             </ListItem>
           </Container>
         )}

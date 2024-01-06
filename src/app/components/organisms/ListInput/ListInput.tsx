@@ -8,6 +8,7 @@ interface ListInputProps {
   inputName: string;
   withPrice?: boolean;
   cb: (data: any) => void;
+  currency?: string;
   defaultValue?: string[] | [{ name: string; extraPrice: number }];
 }
 
@@ -17,7 +18,13 @@ const reducer = (items: any, action: any) => {
     : items.filter((item: string) => item !== action.payload);
 };
 
-const ListInput = ({ inputName, withPrice = false, cb, defaultValue = [] }: ListInputProps) => {
+const ListInput = ({
+  inputName,
+  withPrice = false,
+  cb,
+  currency,
+  defaultValue = [],
+}: ListInputProps) => {
   const [name, setName] = useState("");
   const [extraPrice, setExtraPrice] = useState("");
   const [items, dispatch] = useReducer(reducer, defaultValue);
@@ -59,7 +66,7 @@ const ListInput = ({ inputName, withPrice = false, cb, defaultValue = [] }: List
         <List>
           {items.map((item: any, index: number) => (
             <ListItem key={index}>
-              {typeof item === "string" ? item : `${item.name} + ${item.extraPrice} PLN`}
+              {typeof item === "string" ? item : `${item.name} + ${item.extraPrice} ${currency}`}
               <img
                 src={bin}
                 alt="bin"

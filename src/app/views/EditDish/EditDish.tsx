@@ -29,6 +29,7 @@ import useModal from "../../components/organisms/Modal/useModal";
 import Notification from "../../components/molecules/Notification/Notification";
 import { useGetSectionsQuery } from "../../features/section-slice";
 import { ISection } from "../../types/Sections";
+import { useGetCurrencyQuery } from "../../features/restaurant-slice";
 
 const reducer = (state: any, action: any) => {
   return {
@@ -44,6 +45,7 @@ const EditDish = () => {
   const [customData, dispatch] = useReducer(reducer, {});
   const [updateDish] = useUpdateDishMutation();
   const { currentData: sectionsData } = useGetSectionsQuery("");
+  const { currentData: currency } = useGetCurrencyQuery("");
   const { isOpen, handleOpenModal, handleCloseModal } = useModal();
   const [isNotificationOpen, setIsNotificationOpen] = useState(false);
   const location = useLocation();
@@ -78,7 +80,7 @@ const EditDish = () => {
     <Wrapper>
       <BackStrip title={t("dish__back")} />
       <Header>{t("dish__edit__header")}</Header>
-      {oldData && sectionsData && (
+      {oldData && sectionsData && currency && (
         <Container>
           <form onSubmit={handleSubmit(onSubmit)}>
             <div>
@@ -150,6 +152,7 @@ const EditDish = () => {
                 cb={(data) => {
                   dispatch({ type: Fields.Variants, payload: data });
                 }}
+                currency={currency}
                 defaultValue={oldData?.variants ? oldData.variants : []}
               />
               <Margin />
@@ -161,6 +164,7 @@ const EditDish = () => {
                 cb={(data) => {
                   dispatch({ type: Fields.ExtraIngredients, payload: data });
                 }}
+                currency={currency}
                 defaultValue={oldData?.extraIngredients ? oldData.extraIngredients : []}
               />
               <Margin />
@@ -190,7 +194,7 @@ const EditDish = () => {
             </div>
             <div>
               <Label>
-                {t("price")}
+                {t("price")} {currency}
                 <span>*</span>
               </Label>
               <Input
