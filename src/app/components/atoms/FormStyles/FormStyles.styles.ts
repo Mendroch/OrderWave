@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+interface HoursProps {
+  $isdisabled?: boolean;
+}
+
 export const Wrapper = styled.div`
   padding: 60px 0 91px 0;
   min-height: 100vh;
@@ -87,9 +91,10 @@ export const InputSubmit = styled.input`
   cursor: pointer;
 `;
 
-export const Hours = styled.div`
+export const Hours = styled.div<HoursProps>`
   display: flex;
   justify-content: space-between;
+  color: ${(props) => (props.$isdisabled ? props.theme.colors.gray : props.theme.colors.black)};
 
   &:not(:last-of-type) {
     margin: 0 0 16px 21px;

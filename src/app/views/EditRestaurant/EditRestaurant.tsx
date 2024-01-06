@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm, useWatch, SubmitHandler } from "react-hook-form";
 import { ActionStripWrapper } from "../../components/atoms/ActionStripWrapper/ActionStripWrapper.styles";
 import Button from "../../components/atoms/Button/Button";
 import {
@@ -31,7 +31,7 @@ import { useDaysOfWeek } from "../../hooks/useDaysOfWeek";
 
 const EditRestaurant = () => {
   const { t } = useTranslation();
-  const { register, setValue, watch, handleSubmit } = useForm<IRestaurant>();
+  const { register, setValue, watch, control, handleSubmit } = useForm<IRestaurant>();
   const [data, setData] = useState({});
   const [updateRestaurant] = useUpdateRestaurantsMutation();
   const { isOpen, handleOpenModal, handleCloseModal } = useModal();
@@ -40,6 +40,7 @@ const EditRestaurant = () => {
   const navigate = useNavigate();
   const [oldData, setOldData] = useState<IRestaurant>();
   const daysOfWeek = useDaysOfWeek();
+  const openDays = useWatch({ control, name: Fields.OpenDays });
 
   useEffect(() => {
     if (location.state.restaurantData) setOldData(location.state.restaurantData);
@@ -124,7 +125,10 @@ const EditRestaurant = () => {
                 <span>*</span>
               </Label>
               {daysOfWeek.map((day, index) => (
-                <Hours key={index}>
+                <Hours
+                  key={index}
+                  $isdisabled={openDays ? !openDays[index] : !watch(Fields.OpenDays)[index]}
+                >
                   <p>{day}</p>
                   <TimeInput
                     register={register}
@@ -133,6 +137,7 @@ const EditRestaurant = () => {
                     index={index}
                     fieldName={Fields.OpeningHours}
                     defaultValue={oldData?.openingHours[index]}
+                    isRequired={openDays ? openDays[index] : watch(Fields.OpenDays)[index]}
                   />
                 </Hours>
               ))}

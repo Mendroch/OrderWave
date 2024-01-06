@@ -8,6 +8,7 @@ interface TimeInputProps {
   index: number;
   fieldName: string;
   defaultValue?: { start: string; end: string; _id: string } | undefined;
+  isRequired?: boolean;
 }
 
 const TimeInput = ({
@@ -17,6 +18,7 @@ const TimeInput = ({
   index,
   fieldName,
   defaultValue,
+  isRequired = true,
 }: TimeInputProps) => {
   const [time, setTime] = useState("");
   const name1 = `${fieldName}[${index}].start`;
@@ -48,7 +50,8 @@ const TimeInput = ({
           const time = e.target.value;
           if (time > watchTime2) setTime2(time);
         }}
-        required
+        required={isRequired}
+        disabled={!isRequired}
       />
       <p>-</p>
       <input
@@ -59,7 +62,8 @@ const TimeInput = ({
           if (time >= watchTime1) setTime2(time);
         }}
         value={time}
-        required
+        required={isRequired}
+        disabled={!isRequired}
       />
     </div>
   );
