@@ -17,6 +17,8 @@ import { FilePondInitialFile } from "filepond";
 interface FileInputProps {
   setImage: (data: string) => void;
   defaultValue?: string;
+  resolution?: number;
+  isRequired?: boolean;
 }
 
 registerPlugin(
@@ -28,7 +30,12 @@ registerPlugin(
   FilePondPluginFileValidateType
 );
 
-const FileInput = ({ setImage, defaultValue = "" }: FileInputProps) => {
+const FileInput = ({
+  setImage,
+  defaultValue = "",
+  resolution = 136,
+  isRequired = false,
+}: FileInputProps) => {
   const [pondFiles, setPondFiles] = useState<FilePondInitialFile[]>(
     defaultValue.length
       ? [
@@ -62,8 +69,8 @@ const FileInput = ({ setImage, defaultValue = "" }: FileInputProps) => {
       onupdatefiles={(fileItems: any) => setPondFiles(fileItems)}
       onpreparefile={(_, output) => handleInput(output)}
       allowImageResize
-      imageResizeTargetWidth={136}
-      imageResizeTargetHeight={136}
+      imageResizeTargetWidth={resolution}
+      imageResizeTargetHeight={resolution}
       imageResizeUpscale={false}
       imageResizeMode={"contain"}
       imageEditEditor={create({
@@ -77,6 +84,7 @@ const FileInput = ({ setImage, defaultValue = "" }: FileInputProps) => {
       labelFileLoading={`${t("filepond__loading")}`}
       labelFileWaitingForSize={`${t("filepond__size")}`}
       labelTapToCancel={`${t("filepond__cancel")}`}
+      required={isRequired}
     />
   );
 };

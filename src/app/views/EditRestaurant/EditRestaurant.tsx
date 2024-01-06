@@ -97,6 +97,8 @@ const EditRestaurant = () => {
                   setValue(Fields.Background, data);
                 }}
                 defaultValue={(oldData?.background ? oldData.background : "") as string}
+                resolution={450}
+                isRequired={true}
               />
               <Margin />
             </div>
@@ -106,7 +108,7 @@ const EditRestaurant = () => {
                 <span>*</span>
               </Label>
               {daysOfWeek.map((day, index) => (
-                <SwitchWrapper>
+                <SwitchWrapper key={index}>
                   <Label>{day}</Label>
                   <Switch
                     register={{ ...register(`${Fields.OpenDays}[${index}]`) }}

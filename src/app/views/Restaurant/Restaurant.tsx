@@ -65,7 +65,7 @@ const Restaurant = () => {
             </ListItem>
             <ListItem>
               <Title>{t("background")}</Title>
-              <img src={`${currentData[0].background}`} alt="dish picture" />
+              <img src={`${currentData[0].background}`} alt="restaurant background" />
             </ListItem>
             <HoursWrapper>
               <Title>{t("opening_hours")}</Title>
