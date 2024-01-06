@@ -15,3 +15,16 @@ export const Container = styled.div`
 export const Closed = styled.p`
   color: ${({ theme }) => theme.colors.red};
 `;
+
+export const BackgroundWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 8px 0;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.semiLightGray};
+
+  img {
+    margin-top: 19px;
+    max-width: 100%;
+    align-self: flex-end;
+  }
+`;

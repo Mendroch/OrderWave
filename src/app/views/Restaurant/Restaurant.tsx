@@ -6,7 +6,7 @@ import Button from "../../components/atoms/Button/Button";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ActionStripWrapper } from "../../components/atoms/ActionStripWrapper/ActionStripWrapper.styles";
 import { useGetRestaurantsQuery } from "../../features/restaurant-slice";
-import { Closed, Container, Wrapper } from "./Restaurant.styles";
+import { BackgroundWrapper, Closed, Container, Wrapper } from "./Restaurant.styles";
 import {
   Hour,
   HoursWrapper,
@@ -63,10 +63,10 @@ const Restaurant = () => {
               <Title>{t("name")}</Title>
               <Text>{currentData[0].name}</Text>
             </ListItem>
-            <ListItem>
+            <BackgroundWrapper>
               <Title>{t("background")}</Title>
               <img src={`${currentData[0].background}`} alt="restaurant background" />
-            </ListItem>
+            </BackgroundWrapper>
             <HoursWrapper>
               <Title>{t("opening_hours")}</Title>
               {daysOfWeek.map((day, index: number) => (
