@@ -14,6 +14,7 @@ import {
   Text,
   Title,
 } from "../../components/atoms/PreviewStyles/PreviewStyles.styles";
+import { useDaysOfWeek } from "../../hooks/useDaysOfWeek";
 
 const Restaurant = () => {
   const { currentData, isLoading, isError } = useGetRestaurantsQuery("");
@@ -25,16 +26,7 @@ const Restaurant = () => {
   });
   const location = useLocation();
   const navigate = useNavigate();
-
-  const daysOfWeek = [
-    t("monday"),
-    t("tuesday"),
-    t("wednesday"),
-    t("thursday"),
-    t("friday"),
-    t("saturday"),
-    t("sunday"),
-  ];
+  const daysOfWeek = useDaysOfWeek();
 
   useEffect(() => {
     console.log(currentData);

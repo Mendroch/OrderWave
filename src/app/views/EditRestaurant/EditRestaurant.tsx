@@ -27,6 +27,7 @@ import TimeInput from "../../components/molecules/TimeInput/TimeInput";
 import { IRestaurant } from "../../types/Restaurants";
 import { useUpdateRestaurantsMutation } from "../../features/restaurant-slice";
 import FileInput from "../../components/molecules/FileInput/FileInput";
+import { useDaysOfWeek } from "../../hooks/useDaysOfWeek";
 
 const EditRestaurant = () => {
   const { t } = useTranslation();
@@ -38,16 +39,7 @@ const EditRestaurant = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [oldData, setOldData] = useState<IRestaurant>();
-
-  const daysOfWeek = [
-    t("monday"),
-    t("tuesday"),
-    t("wednesday"),
-    t("thursday"),
-    t("friday"),
-    t("saturday"),
-    t("sunday"),
-  ];
+  const daysOfWeek = useDaysOfWeek();
 
   useEffect(() => {
     if (location.state.restaurantData) setOldData(location.state.restaurantData);

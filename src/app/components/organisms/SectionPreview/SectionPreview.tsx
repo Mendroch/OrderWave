@@ -13,6 +13,7 @@ import {
 import close from "../../../assets/icons/close.png";
 import Shadow from "../../molecules/Shadow/Shadow";
 import { ISection } from "../../../types/Sections";
+import { useDaysOfWeek } from "../../../hooks/useDaysOfWeek";
 
 interface SectionPreviewProps {
   isOpen: boolean;
@@ -22,16 +23,7 @@ interface SectionPreviewProps {
 
 const SectionPreview = ({ isOpen, toggle, section }: SectionPreviewProps) => {
   const { t } = useTranslation();
-
-  const daysOfWeek = [
-    t("monday"),
-    t("tuesday"),
-    t("wednesday"),
-    t("thursday"),
-    t("friday"),
-    t("saturday"),
-    t("sunday"),
-  ];
+  const daysOfWeek = useDaysOfWeek();
 
   return (
     <>

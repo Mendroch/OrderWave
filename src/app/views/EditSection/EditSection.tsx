@@ -25,6 +25,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { ISection } from "../../types/Sections";
 import { useUpdateSectionMutation } from "../../features/section-slice";
 import TimeInput from "../../components/molecules/TimeInput/TimeInput";
+import { useDaysOfWeek } from "../../hooks/useDaysOfWeek";
 
 const EditSection = () => {
   const { t } = useTranslation();
@@ -36,16 +37,7 @@ const EditSection = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [oldData, setOldData] = useState<ISection>();
-
-  const daysOfWeek = [
-    t("monday"),
-    t("tuesday"),
-    t("wednesday"),
-    t("thursday"),
-    t("friday"),
-    t("saturday"),
-    t("sunday"),
-  ];
+  const daysOfWeek = useDaysOfWeek();
 
   useEffect(() => {
     if (location.state.sectionData) setOldData(location.state.sectionData);

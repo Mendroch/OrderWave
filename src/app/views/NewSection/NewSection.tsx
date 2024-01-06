@@ -25,6 +25,7 @@ import { useNavigate } from "react-router-dom";
 import { ISection } from "../../types/Sections";
 import { useCreateSectionMutation } from "../../features/section-slice";
 import TimeInput from "../../components/molecules/TimeInput/TimeInput";
+import { useDaysOfWeek } from "../../hooks/useDaysOfWeek";
 
 const NewSection = () => {
   const { t } = useTranslation();
@@ -34,16 +35,7 @@ const NewSection = () => {
   const { isOpen, handleOpenModal, handleCloseModal } = useModal();
   const [isNotificationOpen, setIsNotificationOpen] = useState(false);
   const navigate = useNavigate();
-
-  const daysOfWeek = [
-    t("monday"),
-    t("tuesday"),
-    t("wednesday"),
-    t("thursday"),
-    t("friday"),
-    t("saturday"),
-    t("sunday"),
-  ];
+  const daysOfWeek = useDaysOfWeek();
 
   const handleCreateSection = async () => {
     try {
