@@ -1,27 +1,25 @@
-import { useTranslation } from "react-i18next";
-import { Link, ButtonWrapper, Header, Paragraph, Wrapper } from "./Dashboard.styles";
-import icon from "../../assets/icons/icon.png";
+import ClientWrapper from "../../components/atoms/ClientWrapper/ClientWrapper";
+import OpeningHours from "../../components/organisms/OpeningHours/OpeningHours";
+import { useGetDishesQuery } from "../../features/dish-slice";
+import { useGetRestaurantsQuery } from "../../features/restaurant-slice";
+import { useGetSectionsQuery } from "../../features/section-slice";
+import { Background, RestaurantName } from "./Dashboard.styles";
 
 const Dashboard = () => {
-  const { t } = useTranslation();
+  const { currentData: restaurantData } = useGetRestaurantsQuery("");
+  const { currentData: dishesData } = useGetDishesQuery("");
+  const { currentData: sectionsData } = useGetSectionsQuery("");
 
   return (
-    <Wrapper>
-      <Header>
-        <p>{t("dashboard__welcome")}&nbsp;</p>
-        <img src={icon} alt="app icon" />
-        <p>OrderWave</p>
-      </Header>
-      <Paragraph>
-        {t("dashboard__text--top")}
-        <br />
-        {t("dashboard__text--bottom")}
-      </Paragraph>
-      <ButtonWrapper>
-        <Link to="/client/menu">{t("dashboard__client")}</Link>
-        <Link to="/owner/orders">{t("dashboard__owner")}</Link>
-      </ButtonWrapper>
-    </Wrapper>
+    <>
+      {restaurantData && dishesData && sectionsData && (
+        <ClientWrapper>
+          {<Background src={restaurantData[0].background} alt="restaurant background" />}
+          <RestaurantName>{restaurantData[0].name}</RestaurantName>
+          <OpeningHours hours={restaurantData[0].openingHours} days={restaurantData[0].openDays} />
+        </ClientWrapper>
+      )}
+    </>
   );
 };
 

@@ -9,6 +9,7 @@
   "navigation__editsection": "Sections",
   "navigation__restaurant": "Restaurant",
   "navigation__editrestaurant": "Restaurant",
+  "navigation__menu": "Menu",
   "navigation__lang": "Change language",
   "navigation__en": "English",
   "navigation__pl": "Polish",
@@ -95,6 +96,11 @@
   "restaurant__confirm__edit": "Confirm restaurant edition",
   "restaurant__back": "Back to Restaurant",
   "restaurant__edit__header": "Edit Restaurant",
+
+  "menu__open__today": "Open today",
+  "menu__closed__today": "Closed. Opens",
+  "menu__show__hours": "Show opening hours for the week",
+  "menu__show__less": "Show less",
 
   "filepond__direction": "Drag & Drop your file or",
   "filepond__browse": "Browse",

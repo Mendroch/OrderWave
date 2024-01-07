@@ -9,6 +9,7 @@
   "navigation__editsection": "Sekcje",
   "navigation__restaurant": "Restauracja",
   "navigation__editrestaurant": "Restauracja",
+  "navigation__menu": "Menu",
   "navigation__lang": "Zmień język",
   "navigation__en": "Angielski",
   "navigation__pl": "Polski",
@@ -95,6 +96,11 @@
   "restaurant__confirm__edit": "Potwierdź edycje restauracji",
   "restaurant__back": "Powróć do restauracji",
   "restaurant__edit__header": "Edytuj restauracje",
+
+  "menu__open__today": "Otwarte dzisiaj",
+  "menu__closed__today": "Zamknięte. Otwarte",
+  "menu__show__hours": "Pokaż godziny otwarcia w tygodniu",
+  "menu__show__less": "Pokaż mniej",
 
   "filepond__direction": "Przeciągnij i upuść plik lub",
   "filepond__browse": "Przeglądaj",

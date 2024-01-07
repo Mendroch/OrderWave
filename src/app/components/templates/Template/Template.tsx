@@ -1,11 +1,16 @@
 import { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
-import Navigation from "../../organisms/Navigation/Navigation";
+import OwnerNavigation from "../../organisms/OwnerNavigation/OwnerNavigation";
+import ClientNavigation from "../../organisms/ClientNavigation/ClientNavigation";
 import Header from "../../molecules/Header/Header";
 import Shadow from "../../molecules/Shadow/Shadow";
-import { Wrapper } from "./OwnerTemplate.styles";
+import { Wrapper } from "./Template.styles";
 
-const OwnerTemplate = () => {
+interface TemplateProps {
+  type: string;
+}
+
+const Template = ({ type }: TemplateProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleNavigation = () => {
@@ -19,11 +24,15 @@ const OwnerTemplate = () => {
   return (
     <Wrapper>
       <Header toggleNavigation={toggleNavigation} />
-      <Navigation isOpen={isOpen} toggleNavigation={toggleNavigation} />
+      {type === "owner" ? (
+        <OwnerNavigation isOpen={isOpen} toggleNavigation={toggleNavigation} />
+      ) : (
+        <ClientNavigation isOpen={isOpen} toggleNavigation={toggleNavigation} />
+      )}
       <Shadow isOpen={isOpen} toggle={toggleNavigation} />
       <Outlet />
     </Wrapper>
   );
 };
 
-export default OwnerTemplate;
+export default Template;

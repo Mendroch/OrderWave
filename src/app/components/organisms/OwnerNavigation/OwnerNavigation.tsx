@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { Menu, TopBar } from "./Navigation.styles";
+import { Menu, TopBar } from "../../atoms/NavigationStyles/NavigationStyles.styles";
 import close from "../../../assets/icons/close.png";
 import orders from "../../../assets/icons/orders.png";
 import food from "../../../assets/icons/food.png";
@@ -15,7 +15,7 @@ interface NavigationProps {
   toggleNavigation: () => void;
 }
 
-const Navigation = ({ isOpen, toggleNavigation }: NavigationProps) => {
+const OwnerNavigation = ({ isOpen, toggleNavigation }: NavigationProps) => {
   const { t } = useTranslation();
 
   return (
@@ -52,4 +52,4 @@ const Navigation = ({ isOpen, toggleNavigation }: NavigationProps) => {
   );
 };
 
-export default Navigation;
+export default OwnerNavigation;
