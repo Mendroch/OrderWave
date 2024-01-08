@@ -12,9 +12,10 @@ export const Sections = styled.div`
   grid-template-columns: 1fr 1fr;
   gap: 8px;
 
-  a {
+  button {
     padding: 16px;
     color: ${({ theme }) => theme.colors.black};
+    background: ${({ theme }) => theme.colors.white};
     border-radius: 4px;
     border: 1px solid ${({ theme }) => theme.colors.gray};
     text-align: center;
