@@ -101,6 +101,8 @@
   "menu__closed__today": "Closed. Opens",
   "menu__show__hours": "Show opening hours for the week",
   "menu__show__less": "Show less",
+  "menu__unavailable": "UNAVAILABLE",
+  "menu__section__unavailable": "The section is currently unavailable",
 
   "filepond__direction": "Drag & Drop your file or",
   "filepond__browse": "Browse",

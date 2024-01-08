@@ -20,7 +20,7 @@ export interface IDish {
     },
   ];
   removableIngredients?: string[];
-  picture?: Buffer;
+  picture?: string;
   price: number;
   _id: string;
 }

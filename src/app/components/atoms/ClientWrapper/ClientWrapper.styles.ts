@@ -8,6 +8,6 @@ export const Wrapper = styled.div`
 
 export const Container = styled.div`
   margin: 0 auto;
-  padding: 0 21px;
+  padding: 0 21px 21px 21px;
   max-width: 560px;
 `;

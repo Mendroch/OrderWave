@@ -101,6 +101,8 @@
   "menu__closed__today": "Zamknięte. Otwarte",
   "menu__show__hours": "Pokaż godziny otwarcia w tygodniu",
   "menu__show__less": "Pokaż mniej",
+  "menu__unavailable": "NIEDOSTĘPNY",
+  "menu__section__unavailable": "Sekcja niedostępna",
 
   "filepond__direction": "Przeciągnij i upuść plik lub",
   "filepond__browse": "Przeglądaj",
