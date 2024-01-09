@@ -21,6 +21,7 @@ import { InputSubmit } from "../../components/atoms/FormStyles/FormStyles.styles
 import arrowRight from "../../assets/icons/ArrowRightWhite.png";
 import arrowLeft from "../../assets/icons/ArrowLeftPurple.png";
 import { calculatePrice } from "../../helpers/calculatePrice";
+import { convertData } from "../../helpers/convertData";
 
 const Details = () => {
   const { register, watch, handleSubmit } = useForm<IDish>();
@@ -33,17 +34,19 @@ const Details = () => {
   const watchExtraIngredients = watch(Fields.ExtraIngredients);
 
   useEffect(() => {
-    setPrice(calculatePrice(dish, watchVariant, watchExtraIngredients));
-  }, [watchVariant, watchExtraIngredients, dish]);
-
-  useEffect(() => {
     if (location.state?.dish) setDish(location.state.dish);
     else navigate("/client/menu");
     // eslint-disable-next-line
   }, [location]);
 
+  useEffect(() => {
+    setPrice(calculatePrice(dish, watchVariant, watchExtraIngredients));
+  }, [watchVariant, watchExtraIngredients, dish]);
+
   const onSubmit: SubmitHandler<IDish> = (data) => {
-    console.log(data);
+    if (dish && price) {
+      console.log(convertData(data, dish, price));
+    }
   };
 
   return (
