@@ -23,10 +23,18 @@ export const cartSlice = createSlice({
     clear: (state) => {
       state.dishes = [];
     },
+    increment: (state, action: PayloadAction<string>) => {
+      const dish = state.dishes.find((dish) => dish._id === action.payload);
+      if (dish?.amound) dish.amound++;
+    },
+    decrement: (state, action: PayloadAction<string>) => {
+      const dish = state.dishes.find((dish) => dish._id === action.payload);
+      if (dish?.amound && dish.amound > 1) dish.amound--;
+    },
   },
 });
 
-export const { add, remove } = cartSlice.actions;
+export const { add, remove, clear, increment, decrement } = cartSlice.actions;
 
 export const selectCart = (state: RootState) => state.cart.dishes;
 

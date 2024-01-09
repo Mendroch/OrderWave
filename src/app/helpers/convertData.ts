@@ -29,5 +29,6 @@ export const convertData = (data: IDish, dish: IDish, price: number) => {
     removableIngredients: data.removableIngredients ? data.removableIngredients : [],
     currency: dish.currency ? dish.currency : "",
     price: price,
+    amound: 1,
   };
 };
