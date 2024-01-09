@@ -10,6 +10,7 @@
   "navigation__restaurant": "Restauracja",
   "navigation__editrestaurant": "Restauracja",
   "navigation__menu": "Menu",
+  "navigation__details": "Menu",
   "navigation__lang": "Zmień język",
   "navigation__en": "Angielski",
   "navigation__pl": "Polski",
@@ -103,6 +104,12 @@
   "menu__show__less": "Pokaż mniej",
   "menu__unavailable": "NIEDOSTĘPNY",
   "menu__section__unavailable": "Sekcja niedostępna",
+
+  "details__variant": "Wybierz wersje",
+  "details__required": "Wymagane",
+  "details__add": "Dodać?",
+  "details__removable": "Usunąć składniki?",
+  "details__add__to__cart": "Dodaj do koszyka",
 
   "filepond__direction": "Przeciągnij i upuść plik lub",
   "filepond__browse": "Przeglądaj",

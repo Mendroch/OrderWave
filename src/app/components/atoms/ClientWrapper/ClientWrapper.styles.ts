@@ -1,7 +1,12 @@
 import styled from "styled-components";
 
-export const Wrapper = styled.div`
+interface WrapperProps {
+  $withPadding: boolean;
+}
+
+export const Wrapper = styled.div<WrapperProps>`
   padding-top: 60px;
+  padding-bottom: ${(props) => (props.$withPadding ? "90px" : "0")};
   min-height: 100vh;
   background: ${({ theme }) => theme.colors.white};
 `;

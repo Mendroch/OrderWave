@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 import { IDish } from "../../../types/Dishes";
 import {
   Allergens,
@@ -18,7 +19,14 @@ interface DishProps {
 
 const Dish = ({ dish, currency, isSectionAvailable }: DishProps) => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const isAvailable = dish.isAvailable && isSectionAvailable;
+
+  const handleClick = () => {
+    navigate("/client/details", {
+      state: { dish: { ...dish, currency } },
+    });
+  };
 
   return (
     <Wrapper>
@@ -40,7 +48,7 @@ const Dish = ({ dish, currency, isSectionAvailable }: DishProps) => {
           <p>
             {dish.price} {currency}
           </p>
-          {isAvailable && <Button />}
+          {isAvailable && <Button onClick={handleClick} />}
         </PriceAndButton>
       </div>
     </Wrapper>

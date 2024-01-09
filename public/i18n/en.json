@@ -10,6 +10,7 @@
   "navigation__restaurant": "Restaurant",
   "navigation__editrestaurant": "Restaurant",
   "navigation__menu": "Menu",
+  "navigation__details": "Menu",
   "navigation__lang": "Change language",
   "navigation__en": "English",
   "navigation__pl": "Polish",
@@ -103,6 +104,12 @@
   "menu__show__less": "Show less",
   "menu__unavailable": "UNAVAILABLE",
   "menu__section__unavailable": "The section is currently unavailable",
+
+  "details__variant": "Choose variant",
+  "details__required": "Required",
+  "details__add": "Add?",
+  "details__removable": "Remove ingredients?",
+  "details__add__to__cart": "Add to cart",
 
   "filepond__direction": "Drag & Drop your file or",
   "filepond__browse": "Browse",
