@@ -1,3 +1,4 @@
+import { useAppSelector } from "../../hooks/reduxHooks";
 import ClientWrapper from "../../components/atoms/ClientWrapper/ClientWrapper";
 import Menu from "../../components/molecules/Menu/Menu";
 import OpeningHours from "../../components/organisms/OpeningHours/OpeningHours";
@@ -8,11 +9,17 @@ import { IDish, IDishes } from "../../types/Dishes";
 import { ISection, ISections } from "../../types/Sections";
 import { Background, RestaurantName } from "./Dashboard.styles";
 import Section from "../../components/organisms/Section/Section";
+import { useEffect } from "react";
 
 const Dashboard = () => {
   const { currentData: restaurantData } = useGetRestaurantsQuery("");
   const { currentData: dishesData } = useGetDishesQuery("");
   const { currentData: sectionsData } = useGetSectionsQuery("");
+  const cart = useAppSelector((state) => state.cart.dishes);
+
+  useEffect(() => {
+    console.log(cart);
+  }, [cart]);
 
   const usedSections = sectionsData?.reduce((sections: ISections, section: ISection) => {
     return dishesData?.some((dish: IDish) => dish.sectionId === section._id)

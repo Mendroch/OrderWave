@@ -2,7 +2,7 @@ import { Container, Wrapper } from "./ClientWrapper.styles";
 
 interface ClientWrapperProps {
   children: React.ReactNode;
-  withBottomPadding: boolean;
+  withBottomPadding?: boolean;
 }
 
 const ClientWrapper = ({ children, withBottomPadding = false }: ClientWrapperProps) => {

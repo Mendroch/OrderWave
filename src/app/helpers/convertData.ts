@@ -4,8 +4,14 @@ export const convertData = (data: IDish, dish: IDish, price: number) => {
   return {
     _id: dish._id,
     name: dish.name,
-    description: dish.description,
-    variant: dish?.variants ? dish.variants[Number(data.variant)] : "",
+    description: dish.description ? dish.description : "",
+    variant: dish?.variants
+      ? {
+          name: dish.variants[Number(data.variant)].name,
+          extraPrice: dish.variants[Number(data.variant)].extraPrice,
+          _id: dish.variants[Number(data.variant)]._id,
+        }
+      : undefined,
     extraIngredients: data?.extraIngredients
       ? (data.extraIngredients as unknown as string[]).reduce(
           (ingredients: any[], ingredient: string) => {
@@ -19,7 +25,7 @@ export const convertData = (data: IDish, dish: IDish, price: number) => {
         )
       : [],
     removableIngredients: data.removableIngredients ? data.removableIngredients : [],
-    currency: dish.currency,
+    currency: dish.currency ? dish.currency : "",
     price: price,
   };
 };

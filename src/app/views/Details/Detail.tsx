@@ -22,9 +22,12 @@ import arrowRight from "../../assets/icons/ArrowRightWhite.png";
 import arrowLeft from "../../assets/icons/ArrowLeftPurple.png";
 import { calculatePrice } from "../../helpers/calculatePrice";
 import { convertData } from "../../helpers/convertData";
+import { useAppDispatch } from "../../hooks/reduxHooks";
+import { add } from "../../features/cart-slice";
 
 const Details = () => {
   const { register, watch, handleSubmit } = useForm<IDish>();
+  const dispatch = useAppDispatch();
   const [dish, setDish] = useState<IDish>();
   const location = useLocation();
   const navigate = useNavigate();
@@ -45,7 +48,8 @@ const Details = () => {
 
   const onSubmit: SubmitHandler<IDish> = (data) => {
     if (dish && price) {
-      console.log(convertData(data, dish, price));
+      dispatch(add(convertData(data, dish, price)));
+      navigate("/client/menu");
     }
   };
 
