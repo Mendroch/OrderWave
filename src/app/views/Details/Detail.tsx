@@ -2,20 +2,17 @@ import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { IDish } from "../../types/Dishes";
 import ClientWrapper from "../../components/atoms/ClientWrapper/ClientWrapper";
-import {
-  ActionWrapper,
-  ArrowRight,
-  BackButton,
-  Header,
-  Required,
-  Title,
-  Wrapper,
-} from "./Details.styles";
+import { Header, Required, Title, Wrapper } from "./Details.styles";
 import { useTranslation } from "react-i18next";
 import { SubmitHandler, useForm } from "react-hook-form";
 import DetailsOption from "../../components/molecules/DetailsOption/DetailsOption";
 import { Fields } from "../../enums/dbFields";
-import { ActionStripWrapper } from "../../components/atoms/ActionStripWrapper/ActionStripWrapper.styles";
+import {
+  ActionStripWrapper,
+  ActionWrapper,
+  ArrowRight,
+  LeftButton,
+} from "../../components/atoms/ActionStripWrapper/ActionStripWrapper.styles";
 import Button from "../../components/atoms/Button/Button";
 import { InputSubmit } from "../../components/atoms/FormStyles/FormStyles.styles";
 import arrowRight from "../../assets/icons/ArrowRightWhite.png";
@@ -118,9 +115,9 @@ const Details = () => {
             )}
             <ActionStripWrapper>
               <ActionWrapper>
-                <BackButton to="/client/menu">
+                <LeftButton to="/client/menu">
                   <img src={arrowLeft} alt="arrow left" />
-                </BackButton>
+                </LeftButton>
                 <Button onClick={() => {}}>
                   <InputSubmit type="submit" value="" />
                   {t("details__add__to__cart")} {price} {dish.currency}

@@ -13,16 +13,18 @@ export const convertData = (data: IDish, dish: IDish, price: number) => {
         }
       : undefined,
     extraIngredients: data?.extraIngredients
-      ? (data.extraIngredients as unknown as string[]).reduce(
-          (ingredients: any[], ingredient: string) => {
-            const extraIngredient = dish.extraIngredients?.[Number(ingredient)];
-            if (extraIngredient) {
-              return [...ingredients, extraIngredient];
-            }
-            return ingredients;
-          },
-          []
-        )
+      ? Array.isArray(data.extraIngredients)
+        ? (data.extraIngredients as unknown as string[]).reduce(
+            (ingredients: any[], ingredient: string) => {
+              const extraIngredient = dish.extraIngredients?.[Number(ingredient)];
+              if (extraIngredient) {
+                return [...ingredients, extraIngredient];
+              }
+              return ingredients;
+            },
+            []
+          )
+        : [dish.extraIngredients?.[Number(data.extraIngredients)]]
       : [],
     removableIngredients: data.removableIngredients ? data.removableIngredients : [],
     currency: dish.currency ? dish.currency : "",
