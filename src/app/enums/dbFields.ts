@@ -20,4 +20,7 @@ export enum Fields {
   OpeningHours = "openingHours",
   OpenDays = "openDays",
   Currency = "currency",
+  ClientName = "clientName",
+  PhoneNumber = "phoneNumber",
+  PaymentMethod = "paymentMethod",
 }
