@@ -4,7 +4,6 @@ import Shadow from "../../molecules/Shadow/Shadow";
 import { ICartDish } from "../../../types/CartDish";
 import {
   CartItem,
-  CartItemDetails,
   ClearButton,
   Container,
   Counter,
@@ -15,6 +14,7 @@ import { useAppDispatch } from "../../../hooks/reduxHooks";
 import { clear, decrement, increment } from "../../../features/cart-slice";
 import close from "../../../assets/icons/close.png";
 import bin from "../../../assets/icons/bin.png";
+import CartItemDetails from "../../atoms/CartItemDetails/CartItemDetails";
 
 interface DishPreviewProps {
   isOpen: boolean;
@@ -44,21 +44,9 @@ const ShoppingCart = ({ isOpen, toggle, data }: DishPreviewProps) => {
             <CartItem key={index}>
               <div>
                 <p>{dish.name}</p>
-                <CartItemDetails>
-                  {dish?.description && <p>{dish.description}</p>}
-                  {dish?.extraIngredients &&
-                    dish.extraIngredients.map((ingredient, index) => (
-                      <p key={index}>
-                        + {ingredient.name} ({ingredient.extraPrice} {dish.currency})
-                      </p>
-                    ))}
-                  {dish?.removableIngredients &&
-                    dish.removableIngredients.map((ingredient, index) => (
-                      <p key={index}>- {ingredient}</p>
-                    ))}
-                </CartItemDetails>
+                <CartItemDetails dish={dish} />
                 <Price>
-                  {dish.price} {dish.currency}
+                  {dish.price * dish.amound} {dish.currency}
                 </Price>
               </div>
               <Counter>

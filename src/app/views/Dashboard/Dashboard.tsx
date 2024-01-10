@@ -9,7 +9,7 @@ import { useGetRestaurantsQuery } from "../../features/restaurant-slice";
 import { useGetSectionsQuery } from "../../features/section-slice";
 import { IDish, IDishes } from "../../types/Dishes";
 import { ISection, ISections } from "../../types/Sections";
-import { Background, CartButton, RestaurantName } from "./Dashboard.styles";
+import { Background, CartButton, RestaurantName, StyledLink } from "./Dashboard.styles";
 import Section from "../../components/organisms/Section/Section";
 import {
   ActionStripWrapper,
@@ -20,6 +20,7 @@ import Button from "../../components/atoms/Button/Button";
 import arrowRight from "../../assets/icons/ArrowRightWhite.png";
 import cartIcon from "../../assets/icons/cart.png";
 import ShoppingCart from "../../components/organisms/ShoppingCart/ShoppingCart";
+import { useCartPrice } from "../../hooks/useCartPrice";
 
 const Dashboard = () => {
   const { currentData: restaurantData } = useGetRestaurantsQuery("");
@@ -28,7 +29,7 @@ const Dashboard = () => {
   const [cartOpen, setCartOpen] = useState(false);
   const { t } = useTranslation();
   const cart = useAppSelector((state) => state.cart.dishes);
-  const sumCartPrice = cart.reduce((sum, elem) => sum + elem.price, 0);
+  const cartPrice = useCartPrice();
 
   const usedSections = sectionsData?.reduce((sections: ISections, section: ISection) => {
     return dishesData?.some((dish: IDish) => dish.sectionId === section._id)
@@ -66,10 +67,12 @@ const Dashboard = () => {
                   <CartButton onClick={() => setCartOpen(true)}>
                     <img src={cartIcon} alt="cart" />
                   </CartButton>
-                  <Button onClick={() => {}}>
-                    {t("menu__to__payment")} {sumCartPrice} {restaurantData[0].currency}
-                    <ArrowRight src={arrowRight} alt="arrow right" />
-                  </Button>
+                  <StyledLink to={"/client/checkout"}>
+                    <Button onClick={() => {}}>
+                      {t("menu__to__payment")} {cartPrice} {restaurantData[0].currency}
+                      <ArrowRight src={arrowRight} alt="arrow right" />
+                    </Button>
+                  </StyledLink>
                 </ActionWrapper>
               </ActionStripWrapper>
               <ShoppingCart isOpen={cartOpen} toggle={() => setCartOpen(false)} data={cart} />

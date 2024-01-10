@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 export const Background = styled.img`
@@ -24,4 +25,8 @@ export const CartButton = styled.button`
   img {
     width: 32px;
   }
+`;
+
+export const StyledLink = styled(NavLink)`
+  width: 100%;
 `;

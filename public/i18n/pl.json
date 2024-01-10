@@ -9,8 +9,9 @@
   "navigation__editsection": "Sekcje",
   "navigation__restaurant": "Restauracja",
   "navigation__editrestaurant": "Restauracja",
-  "navigation__menu": "Menu",
-  "navigation__details": "Menu",
+  "navigation__menu": "",
+  "navigation__details": "",
+  "navigation__checkout": "",
   "navigation__lang": "Zmień język",
   "navigation__en": "Angielski",
   "navigation__pl": "Polski",
@@ -112,6 +113,10 @@
   "details__add": "Dodać?",
   "details__removable": "Usunąć składniki?",
   "details__add__to__cart": "Dodaj do koszyka",
+
+  "checkout__title": "Twoje zamówienie",
+  "checkout__back__to": "Powróć do",
+  "checkout__sum": "Suma",
 
   "filepond__direction": "Przeciągnij i upuść plik lub",
   "filepond__browse": "Przeglądaj",

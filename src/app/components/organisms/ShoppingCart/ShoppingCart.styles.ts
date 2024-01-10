@@ -38,14 +38,6 @@ export const CartItem = styled.div`
   }
 `;
 
-export const CartItemDetails = styled.div`
-  margin-top: 4px;
-  padding-left: 21px;
-  color: ${({ theme }) => theme.colors.darkGray};
-  font-size: ${({ theme }) => theme.fontSize.s};
-  line-height: 22px;
-`;
-
 export const Price = styled.p`
   margin: 4px 0;
   font-size: ${({ theme }) => theme.fontSize.s};

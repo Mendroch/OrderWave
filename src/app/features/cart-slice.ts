@@ -18,7 +18,7 @@ export const cartSlice = createSlice({
       state.dishes.push(action.payload);
     },
     remove: (state, action: PayloadAction<string>) => {
-      state.dishes.filter((dish) => dish._id !== action.payload);
+      state.dishes = state.dishes.filter((dish) => dish._id !== action.payload);
     },
     clear: (state) => {
       state.dishes = [];
