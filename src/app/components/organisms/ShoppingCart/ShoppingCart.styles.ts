@@ -12,6 +12,19 @@ export const Container = styled.div`
   max-width: 560px;
 `;
 
+export const ClearButton = styled.button`
+  position: absolute;
+  top: 29px;
+  left: 21px;
+  padding: 0;
+  border: none;
+  background: rgba(0, 0, 0, 0);
+
+  img {
+    width: 22px;
+  }
+`;
+
 export const CartItem = styled.div`
   margin-top: 6px;
   display: flex;
