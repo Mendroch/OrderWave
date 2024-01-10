@@ -19,6 +19,7 @@ import LandingPage from "./LandingPage/LandingPage";
 import Dashboard from "./Dashboard/Dashboard";
 import Details from "./Details/Detail";
 import Checkout from "./Checkout/Checkout";
+import OrderSummary from "./OrderSummary/OrderSummary";
 
 const App = () => {
   return (
@@ -34,6 +35,7 @@ const App = () => {
                 <Route path="menu" element={<Dashboard />} />
                 <Route path="details" element={<Details />} />
                 <Route path="checkout" element={<Checkout />} />
+                <Route path="summary" element={<OrderSummary />} />
                 <Route path="*" element={<h1>404</h1>} />
               </Route>
               <Route path="/owner" element={<Template type="owner" />}>

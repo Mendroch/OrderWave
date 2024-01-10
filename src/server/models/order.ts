@@ -7,9 +7,12 @@ interface IOrder extends Document {
     variant?: string;
     extraIngredients?: string[];
     removableIngredients?: string[];
+    amound: number;
   }>;
   deliveryMethod: string;
-  tableNumber?: number;
+  tableNumber?: string;
+  phoneNumber: string;
+  clientName: string;
 }
 
 const orderSchema = new Schema<IOrder>({
@@ -20,10 +23,13 @@ const orderSchema = new Schema<IOrder>({
       variant: String,
       extraIngredients: [String],
       removableIngredients: [String],
+      amound: Number,
     },
   ],
   deliveryMethod: { type: String, required: true },
-  tableNumber: Number,
+  tableNumber: String,
+  phoneNumber: String,
+  clientName: String,
 });
 
 export const OrderModel = mongoose.model<IOrder>("Order", orderSchema);

@@ -16,6 +16,16 @@ export const ordersApi = createApi({
       query: () => "/",
       providesTags: ["Order"],
     }),
+    createOrder: build.mutation<{ success: boolean; id: string }, IOrder>({
+      query(data) {
+        return {
+          url: "/",
+          method: "POST",
+          body: data,
+        };
+      },
+      invalidatesTags: ["Order"],
+    }),
     deleteOrder: build.mutation<{ success: boolean; id: string }, string>({
       query(id) {
         return {
@@ -28,4 +38,4 @@ export const ordersApi = createApi({
   }),
 });
 
-export const { useGetOrdersQuery, useDeleteOrderMutation } = ordersApi;
+export const { useGetOrdersQuery, useCreateOrderMutation, useDeleteOrderMutation } = ordersApi;

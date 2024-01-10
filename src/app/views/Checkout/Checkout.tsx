@@ -13,15 +13,27 @@ import { InputSubmit } from "../../components/atoms/FormStyles/FormStyles.styles
 import { ArrowRight } from "../../components/atoms/ActionStripWrapper/ActionStripWrapper.styles";
 import { useCartPrice } from "../../hooks/useCartPrice";
 import arrowRight from "../../assets/icons/ArrowRightWhite.png";
+import { useAppSelector } from "../../hooks/reduxHooks";
+import { convertToOrder } from "../../helpers/convertToOrder";
+import { useCreateOrderMutation } from "../../features/order-slice";
+import { useNavigate } from "react-router-dom";
 
 const Checkout = () => {
   const { currentData: restaurantData } = useGetRestaurantsQuery("");
   const cartPrice = useCartPrice();
   const { t } = useTranslation();
   const { register, handleSubmit } = useForm();
+  const cart = useAppSelector((state) => state.cart.dishes);
+  const [createOrder] = useCreateOrderMutation();
+  const navigate = useNavigate();
 
-  const onSubmit: SubmitHandler<any> = (data) => {
-    console.log(data);
+  const onSubmit: SubmitHandler<any> = async (data) => {
+    try {
+      await createOrder(convertToOrder(data, cart)).unwrap();
+      navigate("/client/summary");
+    } catch {
+      console.log("Error");
+    }
   };
 
   return (

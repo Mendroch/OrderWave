@@ -3,17 +3,17 @@ export interface IOrderedDish {
   variant?: string;
   extraIngredients?: string[];
   removableIngredients?: string[];
-  _id: string;
+  _id?: string;
 }
 
 export interface IOrder {
   [x: string]: any;
-  _id: string;
+  _id?: string;
   number: number;
   dishesList: IOrderedDish[];
   deliveryMethod: string;
-  tableNumber?: number;
-  __v: number;
+  tableNumber?: string;
+  __v?: number;
 }
 
 export interface IOrders extends Array<IOrder> {}
