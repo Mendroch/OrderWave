@@ -46,7 +46,7 @@ const Orders = () => {
 
   useEffect(() => {
     if (activeOrderId && currentData) {
-      let order = currentData.find((order: IOrder) => order._id === activeOrderId);
+      const order = currentData.find((order: IOrder) => order._id === activeOrderId);
       if (order) {
         setActiveOrder(order);
         setIsActive(false);

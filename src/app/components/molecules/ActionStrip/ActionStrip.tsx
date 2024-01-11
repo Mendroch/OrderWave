@@ -5,7 +5,7 @@ import { ActionStripWrapper } from "../../atoms/ActionStripWrapper/ActionStripWr
 
 interface ActionStripProps {
   deliveryMethod: string;
-  tableNumber?: number;
+  tableNumber?: string;
   isActive: boolean;
   onClick: () => void;
 }
