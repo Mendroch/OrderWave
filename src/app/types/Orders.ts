@@ -13,6 +13,8 @@ export interface IOrder {
   dishesList: IOrderedDish[];
   deliveryMethod: string;
   tableNumber?: string;
+  phoneNumber: string;
+  clientName: string;
   __v?: number;
 }
 

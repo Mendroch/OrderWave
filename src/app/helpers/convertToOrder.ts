@@ -5,7 +5,7 @@ import { IDish } from "./../types/Dishes";
 export const convertToOrder = (data: CheckoutData, cart: ICartDish[]) => {
   return {
     number: Math.floor(Math.random() * 200) + 1,
-    clientname: data.clientName,
+    clientName: data.clientName,
     deliveryMethod: data.deliveryMethod,
     phoneNumber: data.phoneNumber,
     tableNumber: data.tableNumber ? data.tableNumber : "",
