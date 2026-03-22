@@ -13,7 +13,7 @@ const OrdersList = ({ orders, activeOrderId, setActiveOrderId }: OrdersListProps
       {orders.map((order: IOrder) => (
         <Item
           key={order._id}
-          onClick={() => setActiveOrderId(order._id)}
+          onClick={() => order._id && setActiveOrderId(order._id)}
           $isactive={activeOrderId === order._id}
         >
           <p>#{order.number}</p>

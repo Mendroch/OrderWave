@@ -1,4 +1,4 @@
-import express from "express";
+import * as express from "express";
 import { Model } from "mongoose";
 import { DishModel } from "./models/dish";
 import { SectionModel } from "./models/section";
