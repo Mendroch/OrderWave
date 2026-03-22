@@ -11,11 +11,13 @@ const Shadow = ({ isOpen, toggle }: ShadowProps) => {
   const [isDisplayed, setIsDisplayed] = useState(false);
 
   useEffect(() => {
-    !isOpen
-      ? setTimeout(() => {
-          setIsDisplayed(false);
-        }, 200)
-      : setIsDisplayed(true);
+    if (!isOpen) {
+      setTimeout(() => {
+        setIsDisplayed(false);
+      }, 200);
+    } else {
+      setIsDisplayed(true);
+    }
   }, [isOpen]);
 
   return (

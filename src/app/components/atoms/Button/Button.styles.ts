@@ -22,6 +22,6 @@ export const StyledButton = styled.button<StyledButtonProps>`
   &:hover {
     cursor: ${(props) => (props.$isactive ? "pointer" : "default")};
     background-color: ${(props) =>
-      props.$isactive ? props.theme.colors.purple : props.theme.semiLightGray};
+      props.$isactive ? props.theme.colors.purple : props.theme.colors.semiLightGray};
   }
 `;
