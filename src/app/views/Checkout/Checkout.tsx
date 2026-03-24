@@ -62,8 +62,8 @@ const Checkout = () => {
                 {...register(Fields.PhoneNumber)}
                 id="phone"
                 type="phone"
-                placeholder="123 456 789"
-                pattern="[0-9]{3}-? ?[0-9]{3}-? ?[0-9]{3}"
+                placeholder="+48 123 456 789"
+                pattern="^\+[1-9]\d{1,2}[\s\-]?[0-9]{3}[\s\-]?[0-9]{3}[\s\-]?[0-9]{3}$"
                 required
               />
               <ButtonWrapper>

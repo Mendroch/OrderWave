@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { Model } from "mongoose";
 import { RestaurantModel } from "./models/restaurant";
 import { OrderModel } from "./models/order";
-import { SMSAPI } from "smsapi";
+import { sendSmsViaInfobip } from "./infobip-sms-service";
 
 interface ControllerOptions {
   model: Model<any>;
@@ -63,16 +63,18 @@ export const putController = ({ model }: ControllerOptions) => {
 export const deleteController = ({ model }: ControllerOptions) => {
   return async (req: Request, res: Response) => {
     if (model === OrderModel) {
-      const smsapi = new SMSAPI(process.env.SMS_API_TOKEN || "");
       try {
         const data = await model.findByIdAndDelete(req.params.id);
-        await smsapi.sms.sendSms(
-          `+48${data.phoneNumber.replace(/[ -]/g, "")}`,
-          `Hey ${data.clientName}, your order number ${data.number} is ready for collection`
-        );
+        
+        await sendSmsViaInfobip({
+          phoneNumber: data.phoneNumber,
+          message: `Hey ${data.clientName}, your order number ${data.number} is ready for collection`,
+        });
+
         res.json({ message: "Resource deleted successfully" });
       } catch (err) {
-        console.log(err);
+        console.error("Error deleting order:", err);
+        res.status(500).json({ error: "Error deleting resource" });
       }
     } else {
       try {
@@ -81,6 +83,7 @@ export const deleteController = ({ model }: ControllerOptions) => {
         res.json({ message: "Resource deleted successfully" });
       } catch (error) {
         console.error("Error deleting resource", error);
+        res.status(500).json({ error: "Error deleting resource" });
       }
     }
   };
