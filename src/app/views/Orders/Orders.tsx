@@ -45,17 +45,26 @@ const Orders = () => {
   };
 
   useEffect(() => {
-    if (activeOrderId && currentData) {
+    if (currentData && currentData.length > 0 && activeOrderId) {
       const order = currentData.find((order: IOrder) => order._id === activeOrderId);
       if (order) {
         setActiveOrder(order);
         setIsActive(false);
+      } else {
+        setActiveOrder(undefined);
       }
+    } else {
+      setActiveOrder(undefined);
     }
   }, [activeOrderId, currentData]);
 
   useEffect(() => {
-    if (currentData) setActiveOrderId(currentData[0]?._id);
+    if (currentData && currentData.length > 0) {
+      setActiveOrderId(currentData[0]._id);
+    } else {
+      setActiveOrderId("");
+      setActiveOrder(undefined);
+    }
   }, [currentData]);
 
   if (isError) return <EmptyInfo>{t("error")}</EmptyInfo>;
@@ -63,8 +72,8 @@ const Orders = () => {
   if (isLoading) return <EmptyInfo>{t("loading")}</EmptyInfo>;
 
   return (
-    <Wrapper>
-      {activeOrder && currentData ? (
+    <Wrapper $isEmpty={!currentData || currentData.length === 0}>
+      {currentData && currentData.length > 0 && activeOrder ? (
         <>
           <OrdersList
             orders={currentData as unknown as IOrders}

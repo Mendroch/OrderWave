@@ -1,7 +1,11 @@
 import styled from "styled-components";
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.div<{ $isEmpty: boolean }>`
   display: flex;
+  justify-content: ${({ $isEmpty }) => ($isEmpty ? "center" : "flex-start")};
+  align-items: ${({ $isEmpty }) => ($isEmpty ? "center" : "flex-start")};
+  min-height: ${({ $isEmpty }) => ($isEmpty ? "100vh" : "auto")};
+  width: 100%;
 
   @media (max-width: 426px) {
     flex-direction: column;
