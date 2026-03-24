@@ -29,14 +29,23 @@ const Checkout = () => {
 
   const onSubmit: SubmitHandler<any> = async (data) => {
     try {
+      const convertedOrder = convertToOrder(data, cart);
+      const sanitizedDishes = convertedOrder.dishesList.map((dish) => ({
+        ...dish,
+        amount: dish.amount ?? 1,
+        totalPrice: dish.totalPrice ?? (dish.price ?? 0) * (dish.amount ?? 1),
+      }));
+
       const orderPayload = {
-        ...convertToOrder(data, cart),
+        ...convertedOrder,
+        dishesList: sanitizedDishes,
         restaurantName: restaurantData?.[0]?.name || "",
       };
+
       await createOrder(orderPayload).unwrap();
       navigate("/client/summary", { state: { order: orderPayload } });
-    } catch {
-      console.log("Error");
+    } catch (error) {
+      console.error("Error creating order:", error);
     }
   };
 

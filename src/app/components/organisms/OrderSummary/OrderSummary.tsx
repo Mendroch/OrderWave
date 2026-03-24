@@ -34,16 +34,16 @@ const OrderSummary = ({ restaurantName }: OrderSummaryProps) => {
                 <BoldText>{dish.name}</BoldText>
                 <CartItemDetails dish={dish} />
                 <Counter>
-                  <button onClick={() => dispatch(decrement(dish._id))}>-</button>
+                  <button onClick={() => dispatch(decrement(index))}>-</button>
                   <p>{dish.amount}</p>
-                  <button onClick={() => dispatch(increment(dish._id))}>+</button>
+                  <button onClick={() => dispatch(increment(index))}>+</button>
                 </Counter>
               </div>
               <div>
                 <BoldText>
                   {dish.price * dish.amount} {dish.currency}
                 </BoldText>
-                <DeleteButton onClick={() => dispatch(remove(dish._id))}>
+                <DeleteButton onClick={() => dispatch(remove(index))}>
                   <img src={bin} alt="bin" />
                 </DeleteButton>
               </div>

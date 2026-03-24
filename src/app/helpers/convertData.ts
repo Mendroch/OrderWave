@@ -19,12 +19,16 @@ export const convertData = (data: IDish, dish: IDish, price: number) => {
     extraIngredients: (data?.extraIngredients && dish?.extraIngredients && dish.extraIngredients.length > 0)
       ? Array.isArray(data.extraIngredients)
         ? (data.extraIngredients as unknown as string[]).reduce(
-            (ingredients: any[], ingredient: string) => {
+            (ingredients: Array<{name: string; extraPrice: number; _id?: string}>, ingredient: string) => {
               const index = Number(ingredient);
               if (!isNaN(index) && index >= 0 && index < dish.extraIngredients!.length) {
                 const extraIngredient = dish.extraIngredients![index];
-                if (extraIngredient) {
-                  return [...ingredients, extraIngredient];
+                if (extraIngredient && typeof extraIngredient === 'object' && extraIngredient.name) {
+                  return [...ingredients, {
+                    name: extraIngredient.name,
+                    extraPrice: extraIngredient.extraPrice || 0,
+                    _id: extraIngredient._id
+                  }];
                 }
               }
               return ingredients;
@@ -35,7 +39,11 @@ export const convertData = (data: IDish, dish: IDish, price: number) => {
             const index = Number(data.extraIngredients);
             if (!isNaN(index) && index >= 0 && dish.extraIngredients!.length > index) {
               const extraIngredient = dish.extraIngredients![index];
-              return extraIngredient ? [extraIngredient] : [];
+              return extraIngredient && typeof extraIngredient === 'object' && extraIngredient.name ? [{
+                name: extraIngredient.name,
+                extraPrice: extraIngredient.extraPrice || 0,
+                _id: extraIngredient._id
+              }] : [];
             }
             return [];
           })()

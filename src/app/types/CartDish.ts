@@ -6,7 +6,11 @@ export interface ICartDish {
     extraPrice: number;
     _id: string;
   };
-  extraIngredients?: any[];
+  extraIngredients?: Array<{
+    name: string;
+    extraPrice: number;
+    _id?: string;
+  }>;
   removableIngredients?: string[];
   currency: string;
   price: number;

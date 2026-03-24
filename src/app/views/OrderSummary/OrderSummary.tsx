@@ -30,7 +30,7 @@ import { IOrderedDish } from "../../types/Orders";
 
 interface IOrderDish {
   name: string;
-  amound?: number;
+  amount?: number;
   price?: number;
   currency?: string;
   variant?: string;
@@ -98,13 +98,13 @@ const OrderSummary = () => {
         createdAt: "",
         dishesList: latestOrder.dishesList.map((dish: IOrderedDish) => ({
           name: dish.name,
-          amound: 1,
-          price: 0,
-          currency: "",
+          amount: dish.amount ?? 1,
+          price: dish.price ?? 0,
+          currency: dish.currency ?? "",
           variant: dish.variant || "",
           extraIngredients: dish.extraIngredients || [],
           removableIngredients: dish.removableIngredients || [],
-          totalPrice: 0,
+          totalPrice: dish.totalPrice,
         })),
       };
     }
@@ -134,10 +134,10 @@ const OrderSummary = () => {
     minute: "2-digit",
   })}`;
 
-  const totalItemCount = order.dishesList.reduce((acc, dish) => acc + (dish.amound ?? 1), 0);
+  const totalItemCount = order.dishesList.reduce((acc, dish) => acc + (dish.amount ?? 1), 0);
   const totalPrice = order.dishesList.reduce(
     (acc, dish) =>
-      acc + ((dish.totalPrice ?? ((dish.price ?? 0) * (dish.amound ?? 1))) as number),
+      acc + ((dish.totalPrice ?? ((dish.price ?? 0) * (dish.amount ?? 1))) as number),
     0
   );
   const currency = order.dishesList[0]?.currency || "";
@@ -195,8 +195,8 @@ const OrderSummary = () => {
             <DishesList>
               {order.dishesList.map((dish, idx) => (
                 <DishItem key={`${dish.name}-${idx}`}>
-                  <span>{dish.name} x {dish.amound ?? 1}</span>
-                  <span>{((dish.price ?? 0) * (dish.amound ?? 1)).toFixed(2)} {dish.currency || currency}</span>
+                  <span>{dish.name} x {dish.amount ?? 1}</span>
+                  <span>{((dish.price ?? 0) * (dish.amount ?? 1)).toFixed(2)} {dish.currency || currency}</span>
                 </DishItem>
               ))}
             </DishesList>

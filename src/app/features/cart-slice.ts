@@ -17,18 +17,18 @@ export const cartSlice = createSlice({
     add: (state, action: PayloadAction<ICartDish>) => {
       state.dishes.push(action.payload);
     },
-    remove: (state, action: PayloadAction<string>) => {
-      state.dishes = state.dishes.filter((dish) => dish._id !== action.payload);
+    remove: (state, action: PayloadAction<number>) => {
+      state.dishes.splice(action.payload, 1);
     },
     clear: (state) => {
       state.dishes = [];
     },
-    increment: (state, action: PayloadAction<string>) => {
-      const dish = state.dishes.find((dish) => dish._id === action.payload);
+    increment: (state, action: PayloadAction<number>) => {
+      const dish = state.dishes[action.payload];
       if (dish?.amount) dish.amount++;
     },
-    decrement: (state, action: PayloadAction<string>) => {
-      const dish = state.dishes.find((dish) => dish._id === action.payload);
+    decrement: (state, action: PayloadAction<number>) => {
+      const dish = state.dishes[action.payload];
       if (dish?.amount && dish.amount > 1) dish.amount--;
     },
   },

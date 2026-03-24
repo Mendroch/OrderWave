@@ -3,6 +3,10 @@ export interface IOrderedDish {
   variant?: string;
   extraIngredients?: string[];
   removableIngredients?: string[];
+  amount: number;
+  price: number;
+  currency: string;
+  totalPrice: number;
   _id?: string;
 }
 

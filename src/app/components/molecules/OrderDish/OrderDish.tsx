@@ -9,7 +9,7 @@ const OrderDish = ({ dish }: OrderDishProps) => {
   return (
     <Wrapper>
       <div>
-        <Name>{dish.name}</Name>
+        <Name>{dish.name} x{dish.amount}</Name>
         <Variant>{dish?.variant}</Variant>
         {dish?.extraIngredients?.map((ingredient, index) => (
           <Ingredient key={index}>+ {ingredient}</Ingredient>

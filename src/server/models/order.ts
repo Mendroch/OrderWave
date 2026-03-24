@@ -7,7 +7,7 @@ interface IOrder extends Document {
     variant?: string;
     extraIngredients?: string[];
     removableIngredients?: string[];
-    amound: number;
+    amount: number;
   }>;
   deliveryMethod: string;
   tableNumber?: string;
@@ -23,7 +23,10 @@ const orderSchema = new Schema<IOrder>({
       variant: String,
       extraIngredients: [String],
       removableIngredients: [String],
-      amound: Number,
+      amount: { type: Number, default: 1 },
+      price: { type: Number, default: 0 },
+      currency: { type: String, default: "" },
+      totalPrice: { type: Number, default: 0 },
     },
   ],
   deliveryMethod: { type: String, required: true },

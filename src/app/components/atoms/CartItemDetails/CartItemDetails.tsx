@@ -6,17 +6,25 @@ interface CartItemDetailsProps {
 }
 
 const CartItemDetails = ({ dish }: CartItemDetailsProps) => {
+  if (!dish) {
+    console.warn('CartItemDetails: dish prop is undefined');
+    return <Wrapper />;
+  }
+
   return (
     <Wrapper>
       {dish?.description && <p>{dish.description}</p>}
-      {dish?.extraIngredients &&
+      {dish?.extraIngredients && Array.isArray(dish.extraIngredients) &&
         dish.extraIngredients.map((ingredient, index) => (
           <p key={index}>
             + {ingredient.name} ({ingredient.extraPrice} {dish.currency})
           </p>
         ))}
-      {dish?.removableIngredients &&
-        dish.removableIngredients.map((ingredient, index) => <p key={index}>- {ingredient}</p>)}
+      {dish?.removableIngredients && Array.isArray(dish.removableIngredients) &&
+        dish.removableIngredients.map((ingredient, index) => {
+          const ingredientName = typeof ingredient === 'string' ? ingredient : String(ingredient);
+          return <p key={index}>- {ingredientName}</p>;
+        })}
     </Wrapper>
   );
 };

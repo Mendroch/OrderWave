@@ -1,6 +1,5 @@
 import { ICartDish } from "../types/CartDish";
 import { CheckoutData } from "../types/CheckoutData";
-import { IDish } from "./../types/Dishes";
 
 export const convertToOrder = (data: CheckoutData, cart: ICartDish[]) => {
   return {
@@ -14,7 +13,7 @@ export const convertToOrder = (data: CheckoutData, cart: ICartDish[]) => {
       name: dish.name,
       variant: dish?.variant?.name ? dish.variant.name : "",
       extraIngredients: dish?.extraIngredients
-        ? dish.extraIngredients.map((ingredient: IDish) => ingredient.name)
+        ? dish.extraIngredients.map((ingredient) => ingredient.name)
         : [],
       removableIngredients: dish?.removableIngredients ? dish.removableIngredients : [],
       amount: dish.amount,
