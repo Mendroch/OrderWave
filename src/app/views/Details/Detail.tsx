@@ -44,6 +44,10 @@ const Details = () => {
   }, [watchVariant, watchExtraIngredients, dish]);
 
   const onSubmit: SubmitHandler<IDish> = (data) => {
+    if (!dish) {
+      console.error("Dish data not available for submission");
+      return;
+    }
     if (dish && price) {
       dispatch(add(convertData(data, dish, price)));
       navigate("/client/menu");
@@ -59,7 +63,7 @@ const Details = () => {
             {dish.description && <p>{dish.description}</p>}
           </Header>
           <form onSubmit={handleSubmit(onSubmit)}>
-            {dish.variants && (
+            {dish.variants && dish.variants.length > 0 && (
               <Wrapper>
                 <Title>
                   <p>{t("details__variant")}</p>
@@ -78,7 +82,7 @@ const Details = () => {
                 ))}
               </Wrapper>
             )}
-            {dish.extraIngredients && (
+            {dish.extraIngredients && dish.extraIngredients.length > 0 && (
               <Wrapper>
                 <Title>
                   <p>{t("details__add")}</p>
@@ -96,7 +100,7 @@ const Details = () => {
                 ))}
               </Wrapper>
             )}
-            {dish.removableIngredients && (
+            {dish.removableIngredients && dish.removableIngredients.length > 0 && (
               <Wrapper>
                 <Title>
                   <p>{t("details__removable")}</p>
@@ -119,7 +123,7 @@ const Details = () => {
                   <img src={arrowLeft} alt="arrow left" />
                 </LeftButton>
                 <Button onClick={() => {}}>
-                  <InputSubmit type="submit" value="" />
+                  <InputSubmit type="submit" value="" disabled={!dish} />
                   {t("details__add__to__cart")} {price} {dish.currency}
                   <ArrowRight src={arrowRight} alt="arrow right" />
                 </Button>
