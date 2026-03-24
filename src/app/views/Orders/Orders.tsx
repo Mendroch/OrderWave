@@ -60,7 +60,7 @@ const Orders = () => {
 
   useEffect(() => {
     if (currentData && currentData.length > 0) {
-      setActiveOrderId(currentData[0]._id);
+      setActiveOrderId(currentData[0]._id ?? "");
     } else {
       setActiveOrderId("");
       setActiveOrder(undefined);

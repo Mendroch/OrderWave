@@ -9,6 +9,7 @@ export const convertToOrder = (data: CheckoutData, cart: ICartDish[]) => {
     deliveryMethod: data.deliveryMethod,
     phoneNumber: data.phoneNumber,
     tableNumber: data.tableNumber ? data.tableNumber : "",
+    createdAt: new Date().toISOString(),
     dishesList: cart.map((dish: ICartDish) => ({
       name: dish.name,
       variant: dish?.variant?.name ? dish.variant.name : "",
@@ -17,6 +18,9 @@ export const convertToOrder = (data: CheckoutData, cart: ICartDish[]) => {
         : [],
       removableIngredients: dish?.removableIngredients ? dish.removableIngredients : [],
       amound: dish.amound,
+      price: dish.price,
+      currency: dish.currency,
+      totalPrice: dish.price * dish.amound,
     })),
   };
 };

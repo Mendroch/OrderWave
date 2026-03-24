@@ -29,8 +29,12 @@ const Checkout = () => {
 
   const onSubmit: SubmitHandler<any> = async (data) => {
     try {
-      await createOrder(convertToOrder(data, cart)).unwrap();
-      navigate("/client/summary");
+      const orderPayload = {
+        ...convertToOrder(data, cart),
+        restaurantName: restaurantData?.[0]?.name || "",
+      };
+      await createOrder(orderPayload).unwrap();
+      navigate("/client/summary", { state: { order: orderPayload } });
     } catch {
       console.log("Error");
     }
