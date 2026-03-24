@@ -4,7 +4,7 @@ import type { IOrder, IOrders } from "../types/Orders";
 export const ordersApi = createApi({
   reducerPath: "ordersApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://127.0.0.1:3000/orders",
+    baseUrl: `${import.meta.env.VITE_API_URL}/orders`,
     prepareHeaders: (headers) => {
       headers.set("Content-Type", "application/json");
       return headers;

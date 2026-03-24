@@ -4,7 +4,7 @@ import { IRestaurant } from "../types/Restaurants";
 export const restaurantsApi = createApi({
   reducerPath: "restaurantsApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://127.0.0.1:3000",
+    baseUrl: `${import.meta.env.VITE_API_URL}`,
     prepareHeaders: (headers) => {
       headers.set("Content-Type", "application/json");
       return headers;

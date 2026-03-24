@@ -17,10 +17,10 @@ export const convertToOrder = (data: CheckoutData, cart: ICartDish[]) => {
         ? dish.extraIngredients.map((ingredient: IDish) => ingredient.name)
         : [],
       removableIngredients: dish?.removableIngredients ? dish.removableIngredients : [],
-      amound: dish.amound,
+      amount: dish.amount,
       price: dish.price,
       currency: dish.currency,
-      totalPrice: dish.price * dish.amound,
+      totalPrice: dish.price * dish.amount,
     })),
   };
 };

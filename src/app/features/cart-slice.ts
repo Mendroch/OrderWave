@@ -25,11 +25,11 @@ export const cartSlice = createSlice({
     },
     increment: (state, action: PayloadAction<string>) => {
       const dish = state.dishes.find((dish) => dish._id === action.payload);
-      if (dish?.amound) dish.amound++;
+      if (dish?.amount) dish.amount++;
     },
     decrement: (state, action: PayloadAction<string>) => {
       const dish = state.dishes.find((dish) => dish._id === action.payload);
-      if (dish?.amound && dish.amound > 1) dish.amound--;
+      if (dish?.amount && dish.amount > 1) dish.amount--;
     },
   },
 });

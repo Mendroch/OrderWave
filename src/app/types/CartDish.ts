@@ -10,6 +10,6 @@ export interface ICartDish {
   removableIngredients?: string[];
   currency: string;
   price: number;
-  amound: number;
+  amount: number;
   _id: string;
 }

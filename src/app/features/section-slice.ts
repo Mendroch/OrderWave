@@ -4,7 +4,7 @@ import { ISection } from "./../types/Sections";
 export const sectionsApi = createApi({
   reducerPath: "sectionsApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://127.0.0.1:3000/sections",
+    baseUrl: `${import.meta.env.VITE_API_URL}/sections`,
     prepareHeaders: (headers) => {
       headers.set("Content-Type", "application/json");
       return headers;

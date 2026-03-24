@@ -46,12 +46,12 @@ const ShoppingCart = ({ isOpen, toggle, data }: DishPreviewProps) => {
                 <p>{dish.name}</p>
                 <CartItemDetails dish={dish} />
                 <Price>
-                  {dish.price * dish.amound} {dish.currency}
+                  {dish.price * dish.amount} {dish.currency}
                 </Price>
               </div>
               <Counter>
                 <button onClick={() => dispatch(decrement(dish._id))}>-</button>
-                <p>{dish.amound}</p>
+                <p>{dish.amount}</p>
                 <button onClick={() => dispatch(increment(dish._id))}>+</button>
               </Counter>
             </CartItem>
