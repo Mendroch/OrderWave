@@ -2,7 +2,6 @@ import tseslint from '@typescript-eslint/eslint-plugin';
 import tsparser from '@typescript-eslint/parser';
 import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
-import storybook from 'eslint-plugin-storybook';
 
 export default [
   {
@@ -21,7 +20,6 @@ export default [
       '@typescript-eslint': tseslint,
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
-      storybook: storybook,
     },
     rules: {
       ...tseslint.configs.recommended.rules,
@@ -34,10 +32,9 @@ export default [
         'warn',
         { allowConstantExport: true },
       ],
-      ...storybook.configs.recommended.rules,
     },
   },
   {
-    ignores: ['dist/**', 'node_modules/**', 'storybook-static/**'],
+    ignores: ['dist/**', 'node_modules/**'],
   },
 ];
