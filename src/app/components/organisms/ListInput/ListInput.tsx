@@ -32,7 +32,6 @@ const ListInput = ({
 
   useEffect(() => {
     cb(items);
-    // eslint-disable-next-line
   }, [items]);
 
   const handleClick = () => {

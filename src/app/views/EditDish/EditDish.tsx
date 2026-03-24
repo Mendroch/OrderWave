@@ -55,7 +55,6 @@ const EditDish = () => {
   useEffect(() => {
     if (location.state?.dishData) setOldData(location.state.dishData);
     else navigate("/owner/dishes");
-    // eslint-disable-next-line
   }, [location]);
 
   const handleEditDish = async () => {

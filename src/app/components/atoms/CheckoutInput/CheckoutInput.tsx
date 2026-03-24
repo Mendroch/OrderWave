@@ -31,7 +31,6 @@ const CheckoutInput = ({
 
   useEffect(() => {
     if (isChecked) setSelectedOption(inputName);
-    // eslint-disable-next-line
   }, []);
 
   const handleChange = () => {

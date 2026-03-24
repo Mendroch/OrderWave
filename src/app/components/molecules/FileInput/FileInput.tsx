@@ -52,7 +52,6 @@ const FileInput = ({
 
   useEffect(() => {
     if (pondFiles.length === 0) setImage("");
-    // eslint-disable-next-line
   }, [pondFiles]);
 
   const handleInput = (output: any) => {

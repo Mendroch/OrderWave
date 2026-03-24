@@ -35,7 +35,6 @@ const Sections = () => {
       setIsNotificationOpen(true);
       navigate(location.pathname, { state: { ...location.state, notification: undefined } });
     }
-    // eslint-disable-next-line
   }, [location]);
 
   const togglePreview = () => setIsPreviewOpen(!isPreviewOpen);

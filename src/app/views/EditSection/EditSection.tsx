@@ -42,7 +42,6 @@ const EditSection = () => {
   useEffect(() => {
     if (location.state?.sectionData) setOldData(location.state.sectionData);
     else navigate("/owner/sections");
-    // eslint-disable-next-line
   }, [location]);
 
   const handleEditSection = async () => {

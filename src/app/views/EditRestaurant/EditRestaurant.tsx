@@ -45,7 +45,6 @@ const EditRestaurant = () => {
   useEffect(() => {
     if (location.state.restaurantData) setOldData(location.state.restaurantData);
     else navigate("/owner/restaurant");
-    // eslint-disable-next-line
   }, [location]);
 
   const handleEditRestaurant = async () => {

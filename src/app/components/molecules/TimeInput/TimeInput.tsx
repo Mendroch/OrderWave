@@ -32,7 +32,6 @@ const TimeInput = ({
       setValue(name2, defaultValue.end);
       setTime(defaultValue.end);
     }
-    // eslint-disable-next-line
   }, []);
 
   const setTime2 = (time: string) => {

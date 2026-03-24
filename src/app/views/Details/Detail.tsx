@@ -36,7 +36,6 @@ const Details = () => {
   useEffect(() => {
     if (location.state?.dish) setDish(location.state.dish);
     else navigate("/client/menu");
-    // eslint-disable-next-line
   }, [location]);
 
   useEffect(() => {

@@ -21,7 +21,6 @@ const OrderSummary = ({ restaurantName }: OrderSummaryProps) => {
 
   useEffect(() => {
     if (!cart.length) navigate("/client/menu");
-    // eslint-disable-next-line
   }, [cart]);
 
   return (
