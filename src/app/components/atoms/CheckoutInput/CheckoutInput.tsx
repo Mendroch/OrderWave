@@ -1,4 +1,4 @@
-import { useEffect, useRef, useImperativeHandle } from "react";
+import { ChangeEvent, useEffect, useRef, useImperativeHandle } from "react";
 import { UseFormRegister, FieldValues, Path } from "react-hook-form";
 import { Input, Label } from "./CheckoutInput.styles";
 
@@ -25,17 +25,18 @@ const CheckoutInput = <T extends FieldValues>({
 }: CheckoutInputProps<T>) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const { ref, ...rest } = register(fieldName as Path<T>);
-  const checked = inputName === selectedOption;
+  const checked = value === selectedOption;
 
   useImperativeHandle(ref, () => inputRef.current);
 
   useEffect(() => {
-    if (isChecked) setSelectedOption(inputName);
-  }, [isChecked, inputName, setSelectedOption]);
+    if (isChecked) setSelectedOption(value);
+  }, [isChecked, value, setSelectedOption]);
 
-  const handleChange = () => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    rest.onChange(e);
     if (inputRef.current) {
-      setSelectedOption(inputRef.current.checked ? inputName : null);
+      setSelectedOption(inputRef.current.checked ? value : null);
     }
   };
 

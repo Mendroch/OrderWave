@@ -60,7 +60,7 @@ const DeliveryMethod = <T extends FieldValues>({ register }: DeliveryMethodProps
           img={takeaway}
         />
       </OptionsWrapper>
-      {selectedOption === t("checkout__table__service") && (
+      {selectedOption === "tableService" && (
         <TableNumber>
           <label>
             {t("checkout__table__number")}

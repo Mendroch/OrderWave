@@ -6,8 +6,9 @@ export const convertToOrder = (data: CheckoutData, cart: ICartDish[]) => {
     number: Math.floor(Math.random() * 200) + 1,
     clientName: data.clientName,
     deliveryMethod: data.deliveryMethod,
+    paymentMethod: data.paymentMethod,
     phoneNumber: data.phoneNumber,
-    tableNumber: data.tableNumber ? data.tableNumber : "",
+    tableNumber: data.deliveryMethod === "tableService" && data.tableNumber ? data.tableNumber : "",
     createdAt: new Date().toISOString(),
     dishesList: cart.map((dish: ICartDish) => ({
       name: dish.name,
