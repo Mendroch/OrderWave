@@ -18,7 +18,7 @@ import { useDaysOfWeek } from "../../../hooks/useDaysOfWeek";
 interface SectionPreviewProps {
   isOpen: boolean;
   toggle: () => void;
-  section: ISection;
+  section?: ISection;
 }
 
 const SectionPreview = ({ isOpen, toggle, section }: SectionPreviewProps) => {

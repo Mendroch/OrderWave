@@ -17,17 +17,18 @@ import { useAppSelector } from "../../hooks/reduxHooks";
 import { convertToOrder } from "../../helpers/convertToOrder";
 import { useCreateOrderMutation } from "../../features/order-slice";
 import { useNavigate } from "react-router-dom";
+import { CheckoutData } from "../../types/CheckoutData";
 
 const Checkout = () => {
   const { currentData: restaurantData } = useGetRestaurantsQuery("");
   const cartPrice = useCartPrice();
   const { t } = useTranslation();
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit } = useForm<CheckoutData>();
   const cart = useAppSelector((state) => state.cart.dishes);
   const [createOrder] = useCreateOrderMutation();
   const navigate = useNavigate();
 
-  const onSubmit: SubmitHandler<any> = async (data) => {
+  const onSubmit: SubmitHandler<CheckoutData> = async (data) => {
     try {
       const convertedOrder = convertToOrder(data, cart);
       const sanitizedDishes = convertedOrder.dishesList.map((dish) => ({

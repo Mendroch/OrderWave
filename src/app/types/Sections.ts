@@ -1,5 +1,4 @@
 export interface ISection {
-  [x: string]: any;
   name: string;
   isAvailable: boolean;
   hoursOfAvailability: Array<{
@@ -10,4 +9,4 @@ export interface ISection {
   _id: string;
 }
 
-export interface ISections extends Array<ISection> {}
+export type ISections = ISection[];

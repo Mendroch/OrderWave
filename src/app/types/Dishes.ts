@@ -1,5 +1,4 @@
 export interface IDish {
-  [x: string]: any;
   name: string;
   description?: string;
   isAvailable: boolean;
@@ -22,7 +21,8 @@ export interface IDish {
   removableIngredients?: string[];
   picture?: string;
   price: number;
+  currency?: string;
   _id: string;
 }
 
-export interface IDishes extends Array<IDish> {}
+export type IDishes = IDish[];

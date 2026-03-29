@@ -35,7 +35,7 @@ const Dishes = () => {
       setIsNotificationOpen(true);
       navigate(location.pathname, { state: { ...location.state, notification: undefined } });
     }
-  }, [location]);
+  }, [location, navigate]);
 
   const togglePreview = () => setIsPreviewOpen(!isPreviewOpen);
 
@@ -56,11 +56,12 @@ const Dishes = () => {
     }
   };
 
-  const handleClick = (e: any) => {
-    const dishId = e.target.parentNode.parentNode.id;
-    if (e.target.parentNode.id && dishId) {
+  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    const target = e.target as HTMLElement;
+    const dishId = target.parentElement?.parentElement?.id;
+    if (target.parentElement?.id && dishId) {
       setClickedDishId(dishId);
-      switch (e.target.parentNode.id) {
+      switch (target.parentElement.id) {
         case "preview":
           togglePreview();
           break;
@@ -74,7 +75,7 @@ const Dishes = () => {
           handleOpenModal();
           break;
         default:
-          () => {};
+          break;
       }
     }
   };

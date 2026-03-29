@@ -1,9 +1,9 @@
 import { useEffect, useRef, useImperativeHandle } from "react";
-import { UseFormRegister } from "react-hook-form";
+import { UseFormRegister, FieldValues, Path } from "react-hook-form";
 import { Input, Label } from "./CheckoutInput.styles";
 
-interface CheckoutInputProps {
-  register: UseFormRegister<any>;
+interface CheckoutInputProps<T extends FieldValues = FieldValues> {
+  register: UseFormRegister<T>;
   fieldName: string;
   inputName: string;
   value: string;
@@ -13,7 +13,7 @@ interface CheckoutInputProps {
   isChecked?: boolean;
 }
 
-const CheckoutInput = ({
+const CheckoutInput = <T extends FieldValues>({
   register,
   fieldName,
   inputName,
@@ -22,16 +22,16 @@ const CheckoutInput = ({
   setSelectedOption,
   img,
   isChecked = false,
-}: CheckoutInputProps) => {
+}: CheckoutInputProps<T>) => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const { ref, ...rest } = register(fieldName);
+  const { ref, ...rest } = register(fieldName as Path<T>);
   const checked = inputName === selectedOption;
 
   useImperativeHandle(ref, () => inputRef.current);
 
   useEffect(() => {
     if (isChecked) setSelectedOption(inputName);
-  }, []);
+  }, [isChecked, inputName, setSelectedOption]);
 
   const handleChange = () => {
     if (inputRef.current) {

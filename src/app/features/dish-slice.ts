@@ -12,7 +12,7 @@ export const dishesApi = createApi({
   }),
   tagTypes: ["Dish"],
   endpoints: (build) => ({
-    getDishes: build.query<IDish, string>({
+    getDishes: build.query<IDish[], string>({
       query: () => "/",
       providesTags: ["Dish"],
     }),
@@ -20,7 +20,7 @@ export const dishesApi = createApi({
       query: (id) => `/${id}`,
       providesTags: ["Dish"],
     }),
-    createDish: build.mutation<{ success: boolean; id: string }, string>({
+    createDish: build.mutation<{ success: boolean; id: string }, Partial<IDish>>({
       query(data) {
         return {
           url: "/",
@@ -30,7 +30,7 @@ export const dishesApi = createApi({
       },
       invalidatesTags: ["Dish"],
     }),
-    updateDish: build.mutation<{ success: boolean; id: string }, { id: string; data: any }>({
+    updateDish: build.mutation<{ success: boolean; id: string }, { id: string; data: Partial<IDish> }>({
       query({ id, data }) {
         return {
           url: `/${id}`,

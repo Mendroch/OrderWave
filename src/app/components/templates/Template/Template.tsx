@@ -18,7 +18,11 @@ const Template = ({ type }: TemplateProps) => {
   };
 
   useEffect(() => {
-    isOpen ? (document.body.style.overflow = "hidden") : (document.body.style.overflow = "auto");
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
   }, [isOpen]);
 
   return (

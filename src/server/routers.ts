@@ -1,5 +1,5 @@
 import * as express from "express";
-import { Model } from "mongoose";
+import { Model, Document } from "mongoose";
 import { DishModel } from "./models/dish";
 import { SectionModel } from "./models/section";
 import { OrderModel } from "./models/order";
@@ -12,7 +12,7 @@ import {
   deleteController,
 } from "./controllers";
 
-const createRouter = (model: Model<any>) => {
+const createRouter = (model: Model<Document>) => {
   const router = express.Router();
 
   router.get("/", getAllController({ model }));

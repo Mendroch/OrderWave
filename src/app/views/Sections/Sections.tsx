@@ -35,7 +35,7 @@ const Sections = () => {
       setIsNotificationOpen(true);
       navigate(location.pathname, { state: { ...location.state, notification: undefined } });
     }
-  }, [location]);
+  }, [location, navigate]);
 
   const togglePreview = () => setIsPreviewOpen(!isPreviewOpen);
 
@@ -56,11 +56,12 @@ const Sections = () => {
     }
   };
 
-  const handleClick = (e: any) => {
-    const sectionId = e.target.parentNode.parentNode.id;
-    if (e.target.parentNode.id && sectionId) {
+  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    const target = e.target as HTMLElement;
+    const sectionId = target.parentElement?.parentElement?.id;
+    if (target.parentElement?.id && sectionId) {
       setClickedSectionId(sectionId);
-      switch (e.target.parentNode.id) {
+      switch (target.parentElement.id) {
         case "preview":
           togglePreview();
           break;
@@ -76,7 +77,7 @@ const Sections = () => {
           handleOpenModal();
           break;
         default:
-          () => {};
+          break;
       }
     }
   };

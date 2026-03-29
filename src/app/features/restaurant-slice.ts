@@ -12,7 +12,7 @@ export const restaurantsApi = createApi({
   }),
   tagTypes: ["Restaurants"],
   endpoints: (build) => ({
-    getRestaurants: build.query<IRestaurant, string>({
+    getRestaurants: build.query<IRestaurant[], string>({
       query: () => "/restaurant",
       providesTags: ["Restaurants"],
     }),
@@ -20,7 +20,7 @@ export const restaurantsApi = createApi({
       query: () => "/currency",
       providesTags: ["Restaurants"],
     }),
-    updateRestaurants: build.mutation<{ success: boolean; id: string }, { id: string; data: any }>({
+    updateRestaurants: build.mutation<{ success: boolean; id: string }, { id: string; data: Partial<IRestaurant> }>({
       query({ id, data }) {
         return {
           url: `/restaurant/${id}`,

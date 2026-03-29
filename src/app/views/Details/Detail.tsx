@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { IDish } from "../../types/Dishes";
+import { DetailsFormData } from "../../types/DetailsFormData";
 import ClientWrapper from "../../components/atoms/ClientWrapper/ClientWrapper";
 import { Header, Required, Title, Wrapper } from "./Details.styles";
 import { useTranslation } from "react-i18next";
@@ -23,7 +24,7 @@ import { useAppDispatch } from "../../hooks/reduxHooks";
 import { add } from "../../features/cart-slice";
 
 const Details = () => {
-  const { register, watch, handleSubmit } = useForm<IDish>();
+  const { register, watch, handleSubmit } = useForm<DetailsFormData>();
   const dispatch = useAppDispatch();
   const [dish, setDish] = useState<IDish>();
   const location = useLocation();
@@ -36,13 +37,13 @@ const Details = () => {
   useEffect(() => {
     if (location.state?.dish) setDish(location.state.dish);
     else navigate("/client/menu");
-  }, [location]);
+  }, [location, navigate]);
 
   useEffect(() => {
     setPrice(calculatePrice(dish, watchVariant, watchExtraIngredients));
   }, [watchVariant, watchExtraIngredients, dish]);
 
-  const onSubmit: SubmitHandler<IDish> = (data) => {
+  const onSubmit: SubmitHandler<DetailsFormData> = (data) => {
     if (!dish) {
       console.error("Dish data not available for submission");
       return;

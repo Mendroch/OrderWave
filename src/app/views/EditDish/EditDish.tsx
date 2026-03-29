@@ -31,7 +31,15 @@ import { useGetSectionsQuery } from "../../features/section-slice";
 import { ISection } from "../../types/Sections";
 import { useGetCurrencyQuery } from "../../features/restaurant-slice";
 
-const reducer = (state: any, action: any) => {
+type ListInputItem = string | { name: string; extraPrice: number };
+type CustomFieldValue = string | boolean | ListInputItem[];
+
+interface CustomFieldsAction {
+  type: string;
+  payload: CustomFieldValue;
+}
+
+const reducer = (state: Record<string, CustomFieldValue>, action: CustomFieldsAction) => {
   return {
     ...state,
     [action.type]: action.payload,
@@ -41,7 +49,7 @@ const reducer = (state: any, action: any) => {
 const EditDish = () => {
   const { t } = useTranslation();
   const { register, handleSubmit } = useForm<IDish>();
-  const [data, setData] = useState({});
+  const [data, setData] = useState<Partial<IDish>>({});
   const [customData, dispatch] = useReducer(reducer, {});
   const [updateDish] = useUpdateDishMutation();
   const { currentData: sectionsData } = useGetSectionsQuery("");
@@ -55,7 +63,7 @@ const EditDish = () => {
   useEffect(() => {
     if (location.state?.dishData) setOldData(location.state.dishData);
     else navigate("/owner/dishes");
-  }, [location]);
+  }, [location, navigate]);
 
   const handleEditDish = async () => {
     if (oldData) {

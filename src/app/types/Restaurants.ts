@@ -1,5 +1,4 @@
 export interface IRestaurant {
-  [x: string]: any;
   name: string;
   background: string;
   openDays: boolean[];
@@ -12,4 +11,4 @@ export interface IRestaurant {
   _id: string;
 }
 
-export interface IRestaurants extends Array<IRestaurant> {}
+export type IRestaurants = IRestaurant[];

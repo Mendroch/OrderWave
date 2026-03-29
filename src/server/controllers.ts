@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
-import { Model } from "mongoose";
+import { Model, Document } from "mongoose";
 import { RestaurantModel } from "./models/restaurant";
 import { OrderModel } from "./models/order";
 import { sendSmsViaInfobip } from "./infobip-sms-service";
 
 interface ControllerOptions {
-  model: Model<any>;
+  model: Model<Document>;
 }
 
 export const getAllController = ({ model }: ControllerOptions) => {
@@ -64,8 +64,13 @@ export const deleteController = ({ model }: ControllerOptions) => {
   return async (req: Request, res: Response) => {
     if (model === OrderModel) {
       try {
-        const data = await model.findByIdAndDelete(req.params.id);
+        const data = await model.findByIdAndDelete(req.params.id) as Document & { phoneNumber: string; clientName: string; number: number } | null;
         
+        if (!data) {
+          res.status(404).json({ error: "Resource not found" });
+          return;
+        }
+
         await sendSmsViaInfobip({
           phoneNumber: data.phoneNumber,
           message: `Hey ${data.clientName}, your order number ${data.number} is ready for collection`,

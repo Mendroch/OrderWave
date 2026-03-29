@@ -12,7 +12,7 @@ export const sectionsApi = createApi({
   }),
   tagTypes: ["Section"],
   endpoints: (build) => ({
-    getSections: build.query<ISection, string>({
+    getSections: build.query<ISection[], string>({
       query: () => "/",
       providesTags: ["Section"],
     }),
@@ -30,7 +30,7 @@ export const sectionsApi = createApi({
       },
       invalidatesTags: ["Section"],
     }),
-    updateSection: build.mutation<{ success: boolean; id: string }, { id: string; data: any }>({
+    updateSection: build.mutation<{ success: boolean; id: string }, { id: string; data: Partial<ISection> }>({
       query({ id, data }) {
         return {
           url: `/${id}`,

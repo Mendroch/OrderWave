@@ -32,7 +32,7 @@ import { useDaysOfWeek } from "../../hooks/useDaysOfWeek";
 const EditRestaurant = () => {
   const { t } = useTranslation();
   const { register, setValue, watch, control, handleSubmit } = useForm<IRestaurant>();
-  const [data, setData] = useState({});
+  const [data, setData] = useState<Partial<IRestaurant>>({});
   const [updateRestaurant] = useUpdateRestaurantsMutation();
   const { isOpen, handleOpenModal, handleCloseModal } = useModal();
   const [isNotificationOpen, setIsNotificationOpen] = useState(false);
@@ -45,7 +45,7 @@ const EditRestaurant = () => {
   useEffect(() => {
     if (location.state.restaurantData) setOldData(location.state.restaurantData);
     else navigate("/owner/restaurant");
-  }, [location]);
+  }, [location, navigate]);
 
   const handleEditRestaurant = async () => {
     if (oldData) {
@@ -110,7 +110,7 @@ const EditRestaurant = () => {
                 <SwitchWrapper key={index}>
                   <Label>{day}</Label>
                   <Switch
-                    register={{ ...register(`${Fields.OpenDays}[${index}]`) }}
+                    register={{ ...register(`openDays.${index}` as const) }}
                     defaultValue={oldData?.openDays !== undefined ? oldData.openDays[index] : true}
                   />
                 </SwitchWrapper>

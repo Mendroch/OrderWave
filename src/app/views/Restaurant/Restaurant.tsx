@@ -34,7 +34,7 @@ const Restaurant = () => {
       setIsNotificationOpen(true);
       navigate(location.pathname, { state: { ...location.state, notification: undefined } });
     }
-  }, [location]);
+  }, [location, navigate]);
 
   const handleClick = () => {
     if (currentData)

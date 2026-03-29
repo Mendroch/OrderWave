@@ -11,7 +11,6 @@ export interface IOrderedDish {
 }
 
 export interface IOrder {
-  [x: string]: any;
   _id?: string;
   number: number;
   dishesList: IOrderedDish[];
@@ -22,4 +21,4 @@ export interface IOrder {
   __v?: number;
 }
 
-export interface IOrders extends Array<IOrder> {}
+export type IOrders = IOrder[];

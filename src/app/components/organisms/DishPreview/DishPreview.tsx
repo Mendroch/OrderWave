@@ -19,7 +19,7 @@ import { useGetCurrencyQuery } from "../../../features/restaurant-slice";
 interface DishPreviewProps {
   isOpen: boolean;
   toggle: () => void;
-  dish: IDish;
+  dish?: IDish;
 }
 
 const DishPreview = ({ isOpen, toggle, dish }: DishPreviewProps) => {
@@ -54,7 +54,7 @@ const DishPreview = ({ isOpen, toggle, dish }: DishPreviewProps) => {
               <ListItem>
                 <Title>{t("section")}</Title>
                 <Text>
-                  {sectionsData.find((elem: ISection) => elem._id === dish.sectionId).name}
+                  {sectionsData.find((elem: ISection) => elem._id === dish.sectionId)?.name}
                 </Text>
               </ListItem>
             )}

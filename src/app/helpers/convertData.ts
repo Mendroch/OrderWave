@@ -1,6 +1,7 @@
+import { DetailsFormData } from "../types/DetailsFormData";
 import { IDish } from "../types/Dishes";
 
-export const convertData = (data: IDish, dish: IDish, price: number) => {
+export const convertData = (data: DetailsFormData, dish: IDish, price: number) => {
   if (!dish) {
     throw new Error("Dish data is required for conversion");
   }

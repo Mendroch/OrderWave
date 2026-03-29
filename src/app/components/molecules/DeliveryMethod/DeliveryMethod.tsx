@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { UseFormRegister } from "react-hook-form";
+import { UseFormRegister, FieldValues, Path } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import {
   Circle,
@@ -13,11 +13,11 @@ import table from "../../../assets/icons/table.png";
 import pickup from "../../../assets/icons/pickup.png";
 import takeaway from "../../../assets/icons/takeaway.png";
 
-interface DeliveryMethodProps {
-  register: UseFormRegister<any>;
+interface DeliveryMethodProps<T extends FieldValues = FieldValues> {
+  register: UseFormRegister<T>;
 }
 
-const DeliveryMethod = ({ register }: DeliveryMethodProps) => {
+const DeliveryMethod = <T extends FieldValues>({ register }: DeliveryMethodProps<T>) => {
   const { t } = useTranslation();
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
 
@@ -66,7 +66,7 @@ const DeliveryMethod = ({ register }: DeliveryMethodProps) => {
             {t("checkout__table__number")}
             <span>*</span>
           </label>
-          <input {...register(Fields.TableNumber)} type="number" required />
+          <input {...register(Fields.TableNumber as Path<T>)} type="number" required />
         </TableNumber>
       )}
     </div>

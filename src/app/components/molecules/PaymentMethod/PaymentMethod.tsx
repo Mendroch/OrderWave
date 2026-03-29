@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { UseFormRegister } from "react-hook-form";
+import { UseFormRegister, FieldValues } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import {
   Circle,
@@ -11,11 +11,11 @@ import CheckoutInput from "../../atoms/CheckoutInput/CheckoutInput";
 import card from "../../../assets/icons/card.png";
 import blik from "../../../assets/icons/blik.png";
 
-interface PaymentMethodProps {
-  register: UseFormRegister<any>;
+interface PaymentMethodProps<T extends FieldValues = FieldValues> {
+  register: UseFormRegister<T>;
 }
 
-const PaymentMethod = ({ register }: PaymentMethodProps) => {
+const PaymentMethod = <T extends FieldValues>({ register }: PaymentMethodProps<T>) => {
   const { t } = useTranslation();
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
 

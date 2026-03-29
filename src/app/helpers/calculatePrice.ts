@@ -2,12 +2,12 @@ import { IDish } from "../types/Dishes";
 
 export const calculatePrice = (
   dish: IDish | undefined,
-  watchVariant?: any,
-  watchExtraIngredients?: any
+  watchVariant?: string | number,
+  watchExtraIngredients?: string | string[]
 ) => {
   let variantPrice = 0;
   let extraIngredientsPrice = 0;
-  if (dish?.variants && watchVariant) variantPrice = dish?.variants[watchVariant]?.extraPrice || 0;
+  if (dish?.variants && watchVariant) variantPrice = dish?.variants[Number(watchVariant)]?.extraPrice || 0;
   if (dish?.extraIngredients && watchExtraIngredients) {
     if (Array.isArray(watchExtraIngredients)) {
       extraIngredientsPrice = watchExtraIngredients.reduce((price: number, ingredient: string) => {

@@ -31,11 +31,11 @@ const Dashboard = () => {
   const cart = useAppSelector((state) => state.cart.dishes);
   const cartPrice = useCartPrice();
 
-  const usedSections = sectionsData?.reduce((sections: ISections, section: ISection) => {
+  const usedSections: ISections = sectionsData?.reduce((sections: ISections, section: ISection) => {
     return dishesData?.some((dish: IDish) => dish.sectionId === section._id)
       ? [...sections, section]
       : sections;
-  }, []);
+  }, [] as ISections) ?? [];
 
   return (
     <>

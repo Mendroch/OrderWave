@@ -12,7 +12,7 @@ import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
 import "filepond-plugin-image-edit/dist/filepond-plugin-image-edit.css";
 import "../../../vendor/doka.min.css";
 import { create } from "../../../vendor/doka.esm.min.js";
-import { FilePondInitialFile } from "filepond";
+import { FilePondFile, FilePondInitialFile } from "filepond";
 
 interface FileInputProps {
   setImage: (data: string) => void;
@@ -52,9 +52,9 @@ const FileInput = ({
 
   useEffect(() => {
     if (pondFiles.length === 0) setImage("");
-  }, [pondFiles]);
+  }, [pondFiles, setImage]);
 
-  const handleInput = (output: any) => {
+  const handleInput = (output: Blob) => {
     const reader = new FileReader();
     reader.onload = function (event) {
       if (event.target) setImage(event.target.result as string);
@@ -65,7 +65,7 @@ const FileInput = ({
   return (
     <FilePond
       files={pondFiles}
-      onupdatefiles={(fileItems: any) => setPondFiles(fileItems)}
+      onupdatefiles={(fileItems: FilePondFile[]) => setPondFiles(fileItems as unknown as FilePondInitialFile[])}
       onpreparefile={(_, output) => handleInput(output)}
       allowImageResize
       imageResizeTargetWidth={resolution}

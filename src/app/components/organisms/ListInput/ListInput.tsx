@@ -4,18 +4,20 @@ import { Input, Label } from "../../atoms/FormStyles/FormStyles.styles";
 import { AddButton, InputsWrapper, List, ListItem } from "./ListInput.styles";
 import bin from "../../../assets/icons/bin.png";
 
+type ListInputItem = string | { name: string; extraPrice: number };
+
 interface ListInputProps {
   inputName: string;
   withPrice?: boolean;
-  cb: (data: any) => void;
+  cb: (data: ListInputItem[]) => void;
   currency?: string;
-  defaultValue?: string[] | [{ name: string; extraPrice: number }];
+  defaultValue?: ListInputItem[];
 }
 
-const reducer = (items: any, action: any) => {
+const reducer = (items: ListInputItem[], action: { type: string; payload: ListInputItem }): ListInputItem[] => {
   return action.type === "add"
     ? [...items, action.payload]
-    : items.filter((item: string) => item !== action.payload);
+    : items.filter((item: ListInputItem) => item !== action.payload);
 };
 
 const ListInput = ({
@@ -32,7 +34,7 @@ const ListInput = ({
 
   useEffect(() => {
     cb(items);
-  }, [items]);
+  }, [items, cb]);
 
   const handleClick = () => {
     if (withPrice && name && extraPrice) {
@@ -63,7 +65,7 @@ const ListInput = ({
       <AddButton onClick={handleClick}>{t("add")}</AddButton>
       {items.length > 0 && (
         <List>
-          {items.map((item: any, index: number) => (
+          {items.map((item: ListInputItem, index: number) => (
             <ListItem key={index}>
               {typeof item === "string" ? item : `${item.name} + ${item.extraPrice} ${currency}`}
               <img

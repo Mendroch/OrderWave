@@ -30,7 +30,7 @@ import { useDaysOfWeek } from "../../hooks/useDaysOfWeek";
 const EditSection = () => {
   const { t } = useTranslation();
   const { register, setValue, watch, handleSubmit } = useForm<ISection>();
-  const [data, setData] = useState({});
+  const [data, setData] = useState<Partial<ISection>>({});
   const [updateSection] = useUpdateSectionMutation();
   const { isOpen, handleOpenModal, handleCloseModal } = useModal();
   const [isNotificationOpen, setIsNotificationOpen] = useState(false);
@@ -42,7 +42,7 @@ const EditSection = () => {
   useEffect(() => {
     if (location.state?.sectionData) setOldData(location.state.sectionData);
     else navigate("/owner/sections");
-  }, [location]);
+  }, [location, navigate]);
 
   const handleEditSection = async () => {
     if (oldData) {
